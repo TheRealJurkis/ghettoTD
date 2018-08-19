@@ -1,0 +1,65 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using SFML.Window;
+using SFML.Graphics;
+using SFML.System;
+
+namespace objTD.Classes
+{
+    class Game
+    {
+        Tile StartTile;
+        TileMap map;
+        Player player;
+
+        BattleComponent battlecomponent;
+
+
+
+
+        string Dirt = "dirt.jpg";
+        string Grass = "grass.jpg";
+
+
+
+        public Game(int width,int height,int tilesize,int[][] mapa)
+        {
+            //mapa by sa asi mala stavat niekde inde
+            map = new TileMap(width, height, tilesize);
+            map.LoadTextures(Grass,Dirt);
+            map.BuildMap(mapa);
+
+            StartTile = map.GetTile(0, 4);
+
+
+
+
+            player = new Player(width,height,tilesize);
+            battlecomponent = new BattleComponent();
+            battlecomponent.LoadMap(map);
+            
+        }
+
+        public void Update(RenderWindow okno)
+        {
+            player.Update(okno);
+
+            battlecomponent.Update(player.selectedtile);
+
+           
+
+            
+        }
+
+
+        public void Draw(RenderWindow okno)
+        {
+            map.Draw(okno);
+            player.Draw(okno);
+            battlecomponent.Draw(okno);
+        }
+    }
+}
