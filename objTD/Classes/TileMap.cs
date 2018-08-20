@@ -22,10 +22,11 @@ namespace objTD.Classes
         public Tile[][] TileArray;
         private int TileSize;
 
+        private Clock clk;
         public TileMap(int WWidth, int Wheight, int TileSize)
         {
             //initializes the TileArray
-
+            clk = new Clock();
             this.TileSize = TileSize;
             TileMapHeight = Wheight / TileSize;
             TileMapWidth = WWidth / TileSize;
@@ -105,6 +106,7 @@ namespace objTD.Classes
 
         public void Draw(RenderWindow okno)
         {
+           // clk.Restart();
             for (int i = 0; i < TileMapWidth; i++)
             {
                 for (int j = 0; j < TileMapHeight; j++)
@@ -112,6 +114,7 @@ namespace objTD.Classes
                     okno.Draw(TileArray[i][j].Tvar);
                 }
             }
+           // Console.WriteLine(clk.ElapsedTime.AsMilliseconds());
         }
     }
 }

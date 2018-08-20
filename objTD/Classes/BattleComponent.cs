@@ -46,20 +46,15 @@ namespace objTD.Classes
                // { continue; }
                 for (int j = enemies.Count -1 ; j >= 0; j--)
                 {
-                    //TODO: too slow,  AABB or BOX2D
-
-                    //or try to check distance from tower to enemy since it is just a circle
-                    //float dist = V2D.Distance(towers.ElementAt(i).AttackRadius.Position, enemies.ElementAt(j).Manifestation.Position);
-                    //if (dist <= towers.ElementAt(i).AttackRadius.Radius)
-                    //{
-                    //    Console.WriteLine("good");
-                    //}
-                    //else { Console.WriteLine("bad"); }
-
-
                     bool hit = towers.ElementAt(i).AttackRadius.GetGlobalBounds().Intersects(enemies.ElementAt(j).Manifestation.GetGlobalBounds());
-                    Console.WriteLine(hit);
-                    Console.WriteLine(enemies.ElementAt(j).Manifestation.GetGlobalBounds().ToString());
+                    
+                    //Console.WriteLine(hit);
+                    //Console.WriteLine(enemies.ElementAt(j).Manifestation.GetGlobalBounds().ToString());
+                    if(hit)
+                    {
+                        hit = false;
+                        break;
+                    }
                 }
 
 

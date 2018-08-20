@@ -19,11 +19,12 @@ namespace objTD.Classes
         private List<Tower> TowerList;
         TileMap map;
         Tile CurrentTile;
-
+        private Clock clk;
 
         public TowerManager()
         {
             TowerList = new List<Tower>();
+            clk = new Clock();
         }
 
 
@@ -75,10 +76,12 @@ namespace objTD.Classes
         }
         public void Draw(RenderWindow okno)
         {
+            //clk.Restart();
             for (int i = TowerList.Count - 1; i >= 0; i--)
             {
                 TowerList.ElementAt(i).Draw(okno);
             }
+           // Console.WriteLine(clk.ElapsedTime.AsMilliseconds());
         }
     }
 }
