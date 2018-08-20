@@ -14,11 +14,9 @@ namespace objTD.Classes
 
     //Projectiles, will have a launch and type fly methods..
 
-
     class Projectiles
     {
-       
-
+ 
         public RectangleShape RigidBody;
         Vector2f Velocity;
         Vector2DUtil vmule;
@@ -32,7 +30,6 @@ namespace objTD.Classes
             RigidBody.Size = new Vector2f(12, 64);
             RigidBody.Position = pozicia;
             Velocity = new Vector2f(0, 0);
-           
         }
 
         public void GiveTarget(Vector2f v)
@@ -43,9 +40,7 @@ namespace objTD.Classes
         public void Update()
         {
             Vector2f smer = Target - this.RigidBody.Position;
-
             Vector2f test = vmule.NormalizeVector(smer);
-
             RigidBody.Position += test;
         }
 
@@ -53,6 +48,5 @@ namespace objTD.Classes
         {
             okno.Draw(RigidBody);
         }
-
     }
 }

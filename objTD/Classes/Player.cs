@@ -16,23 +16,22 @@ namespace objTD.Classes
 
     class Player
     {
-        RectangleShape HooverMouse;
-        int tilesize, wwidth, wheight, PanelWidth;
+        private RectangleShape HooverMouse;
+        private int tilesize, wwidth, wheight, PanelWidth;
         public bool WantsToBuild { get; set; }
-        public Tile selectedtile;
-        private Clock PlayerClock;
-
+        public Tile SelectedTile { get; private set; }
 
 
         public Player(int width,int height,int tilesize,int panelwidth)
         {
+
             this.tilesize = tilesize;
             HooverMouse = new RectangleShape();
             HooverMouse.Size = new Vector2f(tilesize,tilesize);
             wwidth = width;
             wheight = height;
-            selectedtile = new Tile(0, 0, tilesize);
-            selectedtile.Tvar.FillColor = new Color(230, 0, 0, 125);
+            SelectedTile = new Tile(0, 0, tilesize);
+            SelectedTile.Tvar.FillColor = new Color(230, 0, 0, 125);
             WantsToBuild = false;
             HooverMouse.FillColor = new Color(0,0,200,125);
             PanelWidth = panelwidth;
@@ -42,17 +41,15 @@ namespace objTD.Classes
         {
             if (Mouse.IsButtonPressed(Mouse.Button.Right))
             {
-                selectedtile.Tvar.Position = HooverMouse.Position;
+                SelectedTile.Tvar.Position = HooverMouse.Position;
             }            
         }
 
         public void Draw(RenderWindow okno)
         {
             okno.Draw(HooverMouse);
-            okno.Draw(selectedtile.Tvar);
-
+            okno.Draw(SelectedTile.Tvar);
         }
-
 
         public void Update(RenderWindow okno)
         {
@@ -60,12 +57,13 @@ namespace objTD.Classes
             CheckIfTileSwitch(okno);
         }
 
-
         public void MouseHooverUpdate(RenderWindow okno)
         {
+            //refactor and improve selection
+            //add more functions
+
             int X = Mouse.GetPosition(okno).X / tilesize;
             int Y = Mouse.GetPosition(okno).Y / tilesize;
-            int PanelTileX = (wwidth + PanelWidth) / tilesize;
 
             if (X == wwidth / tilesize)
             {
@@ -82,7 +80,6 @@ namespace objTD.Classes
             if (X < 0) { X = 0; }
             if (Y < 0) { Y = 0; }
      
-
 
             HooverMouse.Position = new Vector2f(X * tilesize, Y * tilesize);
         }

@@ -15,17 +15,13 @@ namespace objTD.Classes
         //updates and draws its components,
         // TODO: Improve naming and hardcoded...
 
-
-
         Tile StartTile;
         TileMap map;
         Player player;
         SidePanel sp;
         BattleComponent battlecomponent;
 
-
-
-
+        //load from somekind of an initfile maybe?
         string Dirt = "dirt.jpg";
         string Grass = "grass.jpg";
 
@@ -41,9 +37,6 @@ namespace objTD.Classes
             StartTile = map.GetTile(0, 4);
 
 
-
-
-
             player = new Player(width,height,tilesize,panelwidth);
             battlecomponent = new BattleComponent();
             battlecomponent.LoadMap(map);
@@ -54,10 +47,7 @@ namespace objTD.Classes
         public void Update(RenderWindow okno)
         {
             player.Update(okno);
-
             battlecomponent.Update(player);
-
-           
         }
 
 

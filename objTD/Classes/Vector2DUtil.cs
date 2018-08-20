@@ -61,12 +61,8 @@ namespace objTD.Classes
             {
                 return 90;
             }
-
             float rad = (float)Math.Acos(Dp / (lengthu * lengthv));
             return rad * (float)(180 / Math.PI);
         }
-
-
-
     }
 }
