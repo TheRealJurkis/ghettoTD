@@ -31,7 +31,10 @@ namespace objTD.Classes
             tm.LoadMap(map);
         }
 
+        public void CollisionCheck()
+        {
 
+        }
 
         public void Update(Tile tile)
         {

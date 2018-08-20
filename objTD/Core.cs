@@ -43,7 +43,6 @@ namespace objTD
             settings.AntialiasingLevel = 8;
             RenderWindow okno = new RenderWindow(new VideoMode(WindowWidth, WindowHeight), "okno", Styles.Close, settings);
 
-            RenderWindow okno2 = new RenderWindow(new VideoMode(100, 800), "okno2", Styles.Close);
 
 
 
@@ -61,8 +60,7 @@ namespace objTD
 
 
             Classes.Game game = new Classes.Game(WindowWidth -PanelWidth,WindowHeight,TileSize,map);
-            Classes.SidePanel sidepanel = new Classes.SidePanel(PanelWidth, WindowHeight);
-
+          
 
             //event handles
 
@@ -77,17 +75,12 @@ namespace objTD
             {
                 okno.DispatchEvents();
                 okno.Clear();
-
-                okno2.DispatchEvents();
-                okno2.Clear();
-
-
                 game.Update(okno);
                 game.Draw(okno);
 
                
                 okno.Display();
-                okno2.Display();
+
 
 
 
