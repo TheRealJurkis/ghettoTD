@@ -63,10 +63,10 @@ namespace objTD.Classes
 
         }
 
-        public void Update(Tile tile)
+        public void Update(Player player)
         {
-            tm.UpdateCurrentTile(tile);
-            tm.Update();
+            tm.UpdateCurrentTile(player.selectedtile);
+            tm.Update(player);
             wm.Update();
 
             //check only every couple of frames to save time

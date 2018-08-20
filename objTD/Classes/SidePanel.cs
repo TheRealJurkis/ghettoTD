@@ -12,12 +12,23 @@ namespace objTD.Classes
 {
     class SidePanel
     {
+        RectangleShape[] side;
 
 
 
-
-        public SidePanel(int width, int height)
+        public SidePanel(int start,int width, int height,int sidetile)
         {
+            side = new RectangleShape[height / sidetile];
+            for (int i = 0; i < side.Length; i++)
+            {
+                side[i] = new RectangleShape();
+            }
+            side[0].FillColor = Color.Green;
+            side[0].Position = new Vector2f(start, 0);
+            side[0].Size = new Vector2f(sidetile, sidetile);
+            side[1].FillColor = Color.Red;
+            side[1].Position = new Vector2f(start, sidetile);
+            side[1].Size = new Vector2f(sidetile, sidetile);
 
         }
 
@@ -31,7 +42,8 @@ namespace objTD.Classes
 
         public void Draw(RenderWindow okno)
         {
-
+            okno.Draw(side[0]);
+            okno.Draw(side[1]);
         }
 
     }
