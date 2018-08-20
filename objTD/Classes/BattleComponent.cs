@@ -25,16 +25,14 @@ namespace objTD.Classes
             V2D = new Vector2DUtil();
         }
 
-
         public void LoadMap(TileMap map)
         {
             tm.LoadMap(map);
         }
 
         public void CollisionCheck()
-        { 
-
-            Wave wave=wm.GetCurrentWave();
+        {
+            Wave wave = wm.CurrentWave;
             if (wave == null) return;
             List<Enemy> enemies = wave.GetActiveEnemyList();
             List<Tower> towers = tm.GetTowers();
@@ -56,22 +54,19 @@ namespace objTD.Classes
                         break;
                     }
                 }
-
-
             }
-
-
         }
 
         public void Update(Player player)
         {
-            tm.UpdateCurrentTile(player.selectedtile);
+            tm.UpdateCurrentTile(player.SelectedTile);
             tm.Update(player);
             wm.Update();
 
-            //check only every couple of frames to save time
+            //check only every couple of frames to save cpu
             if (counter++ > 10)
-            { CollisionCheck();
+            {
+                CollisionCheck();
                 counter = 0;
             }
         }
@@ -80,7 +75,5 @@ namespace objTD.Classes
             tm.Draw(okno);
             wm.Draw(okno);
         }
-
-
     }
 }

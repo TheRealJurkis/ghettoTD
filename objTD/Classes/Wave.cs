@@ -65,7 +65,6 @@ namespace objTD.Classes
 
         private void RealeaseEnemy()
         {
-           
             if(DormantEnemyList.Count == 0)  //nothing to add
             {
                 WaveReleaseFinished = true;
@@ -87,15 +86,12 @@ namespace objTD.Classes
 
         public void Update()
         {
-
+            //checkDead();
             CheckForRelease();
-
             for (int i = DrawableEnemies.Count - 1; i >= 0; i--)
             {
                 DrawableEnemies.ElementAt(i).Update();
             }
-
-
         }
 
         public void Draw(RenderWindow okno)
@@ -105,14 +101,6 @@ namespace objTD.Classes
             {
                 DrawableEnemies.ElementAt(i).Draw(okno);
             }
-
-
         }
-
-
-
     }
-
-
-
 }

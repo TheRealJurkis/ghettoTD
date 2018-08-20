@@ -14,15 +14,13 @@ namespace objTD.Classes
         //Map class, resposinble for building the levelground
         //and drawing backround
 
-
-
         private Texture GrassTexture, DirtTexture;
         private int TileMapWidth, TileMapHeight;
-        
         public Tile[][] TileArray;
         private int TileSize;
-
         private Clock clk;
+
+
         public TileMap(int WWidth, int Wheight, int TileSize)
         {
             //initializes the TileArray
@@ -30,8 +28,6 @@ namespace objTD.Classes
             this.TileSize = TileSize;
             TileMapHeight = Wheight / TileSize;
             TileMapWidth = WWidth / TileSize;
-
-
             TileArray = new Tile[TileMapWidth][];
             for (int i = 0; i < TileMapWidth; i++)
             {
@@ -55,8 +51,6 @@ namespace objTD.Classes
         {
             return TileArray[x][y].Buildable;
         }
-
-
 
         //poorname
         public void LoadTextures(string buildablepath, string unbuildablepath)
@@ -84,14 +78,12 @@ namespace objTD.Classes
                         TileArray[i][j].GiveTexture(GrassTexture);
                         TileArray[i][j].Buildable = true;
                     }
-
                 }
             }
         }
 
         public Tile GetTile(int x, int y)
         {
-
             if(x >= TileMapWidth)
             {
                 x = TileMapWidth - 1;
@@ -100,13 +92,11 @@ namespace objTD.Classes
             {
                 y = TileMapHeight - 1;
             }
-            //bug when building outside of window;
             return TileArray[x][y];
         }
 
         public void Draw(RenderWindow okno)
         {
-           // clk.Restart();
             for (int i = 0; i < TileMapWidth; i++)
             {
                 for (int j = 0; j < TileMapHeight; j++)
@@ -114,7 +104,6 @@ namespace objTD.Classes
                     okno.Draw(TileArray[i][j].Tvar);
                 }
             }
-           // Console.WriteLine(clk.ElapsedTime.AsMilliseconds());
         }
     }
 }

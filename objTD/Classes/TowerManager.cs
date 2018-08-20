@@ -27,13 +27,10 @@ namespace objTD.Classes
             clk = new Clock();
         }
 
-
         public List<Tower> GetTowers()
         {
             return TowerList;
         }
-
-
 
         public void BuildTower(int x,int y)
         {
@@ -73,7 +70,6 @@ namespace objTD.Classes
             {
                 TowerList.ElementAt(i).Update();
             }
-
         }
         public void Draw(RenderWindow okno)
         {

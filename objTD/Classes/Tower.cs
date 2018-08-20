@@ -16,11 +16,6 @@ namespace objTD.Classes
     //TODO: tower type
     //shoots ,draws and updates
 
-    struct TowerType
-    {
-
-    }
-
     class Tower
     {
         int Damage;

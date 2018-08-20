@@ -18,7 +18,7 @@ namespace objTD.Classes
     class WaveManager
     {
         List<Wave> WaveList;
-        Wave CurrentWave;
+        public Wave CurrentWave { get; private set; }
         
         Clock WaveManagerClock;
         int AMOUNTOFLEVELS = 100;
@@ -44,25 +44,16 @@ namespace objTD.Classes
             }
         }
 
-
-        public Wave GetCurrentWave()
-        {
-            return CurrentWave;
-           
-        }
-
         public void ReleaseWave()
         {
             //all should be dead or more waves at once
             if (WaveList.Count == 0) return;
             CurrentWave = WaveList.ElementAt(WaveList.Count - 1);
             WaveList.RemoveAt(WaveList.Count - 1);
-
         }
 
         private bool WaveValve(Clock wmc)
         {
-
             //and everyone from previous dead...
             if (wmc.ElapsedTime.AsSeconds() >= 5 && !false )
             {
@@ -78,7 +69,6 @@ namespace objTD.Classes
             //nejako zmerat cas a potom pustit
             //CheckForDeaths();
 
-            
             if (WaveValve(WaveManagerClock))
             {
                 WaveManagerClock.Restart();
@@ -94,9 +84,6 @@ namespace objTD.Classes
         {
             if (CurrentWave == null) { return; }
             CurrentWave.Draw(okno);
-
-
         }
-
     }
 }
