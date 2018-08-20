@@ -80,13 +80,11 @@ namespace objTD
                 okno.DispatchEvents();
                 okno.Clear();
                 game.Update(okno);
+
                 game.Draw(okno);
+                //Console.WriteLine(clock.ElapsedTime.AsMilliseconds());
 
-               
                 okno.Display();
-
-
-
 
 
 

@@ -101,8 +101,6 @@ namespace objTD.Classes
                 TowerProjectiles.ElementAt(i).Update();
             }
 
-            //CheckCollisionNshot();
-
             if(TowerClock.ElapsedTime.AsSeconds() >= 0.5)
             {
                 //ShootAt();
