@@ -12,6 +12,10 @@ namespace objTD.Classes
 {
     class Tile
     {
+        //basic building block for the tile map
+        // TODO: rethink accessors
+
+
         public RectangleShape Tvar;
         public Tile(int x, int y, int size)
         {

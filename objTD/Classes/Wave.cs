@@ -11,6 +11,12 @@ using SFML.Graphics;
 
 namespace objTD.Classes
 {
+    //groups enemies together to create a wave, fills waves, releases waves
+    //TODO: maybe move to wavemanager
+    //Two main lists of enemies, dormant enemies which are to be spawned this wave,
+    // drawable are those that are being drawn
+
+
     class Wave
     {
         List<Enemy> DormantEnemyList;

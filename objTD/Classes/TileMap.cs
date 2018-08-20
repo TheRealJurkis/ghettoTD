@@ -11,6 +11,11 @@ namespace objTD.Classes
 {
     class TileMap
     {
+        //Map class, resposinble for building the levelground
+        //and drawing backround
+
+
+
         private Texture GrassTexture, DirtTexture;
         private int TileMapWidth, TileMapHeight;
         

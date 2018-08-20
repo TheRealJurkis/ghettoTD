@@ -12,6 +12,10 @@ using SFML.Window;
 namespace objTD.Classes
 {
 
+    //basic tower class, has tower related attributes,
+    //TODO: tower type
+    //shoots ,draws and updates
+
     struct TowerType
     {
 

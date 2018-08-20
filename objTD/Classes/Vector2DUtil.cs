@@ -9,6 +9,10 @@ using SFML.System;
 
 namespace objTD.Classes
 {
+    //SFML does not have vector methods needed and is sealed,
+    // So this class was created.. 
+    //TODO: rethink
+
     public class Vector2DUtil
     {
         //this is a horrible idea...

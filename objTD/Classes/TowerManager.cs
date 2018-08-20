@@ -11,6 +11,9 @@ using SFML.System;
 
 namespace objTD.Classes
 {
+    //This class is intended to provide tower management
+    //like building,destroying,updates and draws
+
     class TowerManager
     {
         List<Tower> TowerList;
@@ -69,9 +72,6 @@ namespace objTD.Classes
             {
                 TowerList.ElementAt(i).Draw(okno);
             }
-
         }
-
-
     }
 }

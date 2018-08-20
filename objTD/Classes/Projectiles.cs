@@ -11,8 +11,13 @@ using SFML.Window;
 
 namespace objTD.Classes
 {
+
+    //Projectiles, will have a launch and type fly methods..
+
+
     class Projectiles
     {
+       
 
         public RectangleShape RigidBody;
         Vector2f Velocity;

@@ -11,6 +11,10 @@ using SFML.Graphics;
 
 namespace objTD.Classes
 {
+    //manages wave and releases in set intervals
+    // should check if all enemies are dead maybe give rewards for completing a level
+
+
     class WaveManager
     {
         List<Wave> WaveList;

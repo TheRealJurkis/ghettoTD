@@ -8,8 +8,12 @@ using SFML.System;
 using SFML.Graphics;
 namespace objTD.Classes
 {
+    //Enemies are drawn and updated
+    //TODO: redo constructor and add variability
+
     class Enemy
     {
+
 
         private int Health;
         private Vector2f Velocity;

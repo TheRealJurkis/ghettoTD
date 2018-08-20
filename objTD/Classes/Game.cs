@@ -11,6 +11,12 @@ namespace objTD.Classes
 {
     class Game
     {
+        //Game builds the map  TODO: make an editor,
+        //updates and draws its components,
+        // TODO: Improve naming and hardcoded...
+
+
+
         Tile StartTile;
         TileMap map;
         Player player;

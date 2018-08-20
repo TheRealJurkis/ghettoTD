@@ -9,6 +9,9 @@ using SFML.Graphics;
 
 namespace objTD.Classes
 {
+    //one of the main Components of the game, manifestation of the mouse
+    // and its whereabouts 
+    // TODO: will be responsible for choosing states as well as managing towers from sidepanel
     
 
     class Player

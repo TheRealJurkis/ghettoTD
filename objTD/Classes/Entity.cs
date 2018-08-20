@@ -9,6 +9,9 @@ using SFML.System;
 using SFML.Graphics;
 namespace objTD.Classes
 {
+
+    //Nothing here is usefull anymore/yet
+
    abstract class Entity
     {
         public Vector2f Position { get; set; }

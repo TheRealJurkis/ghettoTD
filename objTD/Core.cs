@@ -12,6 +12,10 @@ using SFML.System;
 
 namespace objTD
 {
+    //Core component of the game, Game loop resides here aswell as the window and game initialization,
+    // it shall be moved into startup manager or smth...
+
+
     class Core
     {
         static void OnClose(object sender, EventArgs e)
