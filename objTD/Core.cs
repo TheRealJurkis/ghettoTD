@@ -34,7 +34,7 @@ namespace objTD
         {
             const int PanelWidth = 64;
             int sleep_time = 0;
-            const int FPS = 80;   
+            const int FPS = 50;   
             const int WindowWidth = 1280 + PanelWidth;
             const int WindowHeight = 960;
             const int TileSize = 64;

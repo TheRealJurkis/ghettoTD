@@ -44,6 +44,10 @@ namespace objTD.Classes
                 DormantEnemyList.Add(new Enemy(10));
             }
         }
+        public List<Enemy> GetActiveEnemyList()
+        {
+            return DrawableEnemies;
+        }
         
         public bool EveryoneReleased()
         {
