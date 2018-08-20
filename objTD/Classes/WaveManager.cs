@@ -44,6 +44,13 @@ namespace objTD.Classes
             }
         }
 
+
+        public Wave GetCurrentWave()
+        {
+            return CurrentWave;
+           
+        }
+
         public void ReleaseWave()
         {
             //all should be dead or more waves at once

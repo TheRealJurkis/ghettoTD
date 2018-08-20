@@ -16,7 +16,7 @@ namespace objTD.Classes
 
     class TowerManager
     {
-        List<Tower> TowerList;
+        private List<Tower> TowerList;
         TileMap map;
         Tile CurrentTile;
 
@@ -27,9 +27,16 @@ namespace objTD.Classes
         }
 
 
+        public List<Tower> GetTowers()
+        {
+            return TowerList;
+        }
+
+
+
         public void BuildTower(int x,int y)
         {
-            TowerList.Add(new Tower(CurrentTile.GetGridPositionX(), CurrentTile.GetGridPositionY(), 200));
+            TowerList.Add(new Tower(CurrentTile.GetGridPositionX(), CurrentTile.GetGridPositionY(), 400));
             map.TileArray[CurrentTile.GetGridPositionX()][CurrentTile.GetGridPositionY()].Buildable = false;
         }
 

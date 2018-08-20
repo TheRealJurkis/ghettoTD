@@ -29,21 +29,22 @@ namespace objTD.Classes
         int i = 1;
 
 
+        bool Reloading;
+
         RectangleShape tvar;
         RectangleShape kanon;
-        CircleShape AttackRadius;
+        public CircleShape AttackRadius;
 
         List<Projectiles> TowerProjectiles;
 
         Clock TowerClock;
 
         CircleShape Target;
-        Random rnd;
 
         public Tower(int Xtile,int Ytile,int attradius)
         {
             TowerClock = new Clock();
-            rnd = new Random();
+         
 
 
             //tilesize is hardcoded consider refactoring
