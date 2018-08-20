@@ -20,7 +20,7 @@ namespace objTD.Classes
         Tile StartTile;
         TileMap map;
         Player player;
-
+        SidePanel sp;
         BattleComponent battlecomponent;
 
 
@@ -31,7 +31,7 @@ namespace objTD.Classes
 
 
 
-        public Game(int width,int height,int tilesize,int[][] mapa)
+        public Game(int width,int height,int tilesize,int[][] mapa,int panelwidth)
         {
             //mapa by sa asi mala stavat niekde inde
             map = new TileMap(width, height, tilesize);
@@ -43,9 +43,11 @@ namespace objTD.Classes
 
 
 
-            player = new Player(width,height,tilesize);
+
+            player = new Player(width,height,tilesize,panelwidth);
             battlecomponent = new BattleComponent();
             battlecomponent.LoadMap(map);
+            sp = new SidePanel(width,panelwidth,height,tilesize);
             
         }
 
@@ -53,16 +55,15 @@ namespace objTD.Classes
         {
             player.Update(okno);
 
-            battlecomponent.Update(player.selectedtile);
+            battlecomponent.Update(player);
 
            
-
-            
         }
 
 
         public void Draw(RenderWindow okno)
         {
+            sp.Draw(okno);
             map.Draw(okno);
             player.Draw(okno);
             battlecomponent.Draw(okno);

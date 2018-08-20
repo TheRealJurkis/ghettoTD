@@ -17,13 +17,14 @@ namespace objTD.Classes
     class Player
     {
         RectangleShape HooverMouse;
-        int tilesize,wwidth,wheight;
-
+        int tilesize, wwidth, wheight, PanelWidth;
+        public bool WantsToBuild { get; set; }
         public Tile selectedtile;
+        private Clock PlayerClock;
 
 
 
-        public Player(int width,int height,int tilesize)
+        public Player(int width,int height,int tilesize,int panelwidth)
         {
             this.tilesize = tilesize;
             HooverMouse = new RectangleShape();
@@ -32,14 +33,14 @@ namespace objTD.Classes
             wheight = height;
             selectedtile = new Tile(0, 0, tilesize);
             selectedtile.Tvar.FillColor = new Color(230, 0, 0, 125);
-
-
+            WantsToBuild = false;
             HooverMouse.FillColor = new Color(0,0,200,125);
+            PanelWidth = panelwidth;
         }
    
         private void CheckIfTileSwitch(RenderWindow okno)
         {
-            if (Mouse.IsButtonPressed(Mouse.Button.Left))
+            if (Mouse.IsButtonPressed(Mouse.Button.Right))
             {
                 selectedtile.Tvar.Position = HooverMouse.Position;
             }            
@@ -55,8 +56,8 @@ namespace objTD.Classes
 
         public void Update(RenderWindow okno)
         {
-            CheckIfTileSwitch(okno);
             MouseHooverUpdate(okno);
+            CheckIfTileSwitch(okno);
         }
 
 
@@ -64,10 +65,23 @@ namespace objTD.Classes
         {
             int X = Mouse.GetPosition(okno).X / tilesize;
             int Y = Mouse.GetPosition(okno).Y / tilesize;
-            if (X > wwidth / tilesize) { X = wwidth / tilesize; }
+            int PanelTileX = (wwidth + PanelWidth) / tilesize;
+
+            if (X == wwidth / tilesize)
+            {
+                if (Mouse.IsButtonPressed(Mouse.Button.Left))
+                {
+                    WantsToBuild = true;
+                    return;
+                }
+            }
+            else if (X > wwidth / tilesize)
+            { X = (wwidth / tilesize) -1; }
+
             if (Y > wheight / tilesize) { Y = wheight / tilesize; }
             if (X < 0) { X = 0; }
             if (Y < 0) { Y = 0; }
+     
 
 
             HooverMouse.Position = new Vector2f(X * tilesize, Y * tilesize);

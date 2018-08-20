@@ -61,10 +61,11 @@ namespace objTD.Classes
             else return false;
         }
 
-        public void Update()
+        public void Update(Player player)
         {
-            if (CurrentTile != null && CheckBuild())
+            if (CurrentTile != null && CheckBuild() && player.WantsToBuild)
             {
+                //postav danu vezu
                 BuildTower(CurrentTile.GetGridPositionX(),CurrentTile.GetGridPositionY());
             }
 

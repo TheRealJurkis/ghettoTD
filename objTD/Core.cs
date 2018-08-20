@@ -34,37 +34,36 @@ namespace objTD
         {
             const int PanelWidth = 64;
             int sleep_time = 0;
-            const int FPS = 50;   
-            const int WindowWidth = 1280 + PanelWidth;
+            const int FPS = 50;
+            const int WindowWidth = 1280;
             const int WindowHeight = 960;
             const int TileSize = 64;
             const int SKIP_TICKS = 1000 / FPS;
-
            
             Clock globalclock = new Clock();
             Clock clock = new Clock();
             ContextSettings settings = new ContextSettings();
             settings.AntialiasingLevel = 8;
-            RenderWindow okno = new RenderWindow(new VideoMode(WindowWidth, WindowHeight), "okno", Styles.Close, settings);
+            RenderWindow okno = new RenderWindow(new VideoMode(WindowWidth +PanelWidth, WindowHeight), "okno", Styles.Close, settings);
 
 
 
 
             //map editor
-            int[][] map = new int[WindowWidth - PanelWidth / TileSize][];
-            for (int i = 0; i < WindowWidth -PanelWidth / TileSize; i++)
+            int[][] map = new int[(WindowWidth / TileSize)][];
+            for (int i = 0; i < WindowWidth / TileSize; i++)
             {
-                map[i] = new int[WindowHeight -PanelWidth / TileSize];
+                map[i] = new int[(WindowHeight / TileSize)];
             }
-            for (int i = 0; i < WindowWidth - PanelWidth / TileSize; i++)
+            for (int i = 0; i < WindowWidth / TileSize; i++)
             {
                 map[i][4] = 1;
             }
 
 
 
-            Classes.Game game = new Classes.Game(WindowWidth -PanelWidth,WindowHeight,TileSize,map);
-          
+            Classes.Game game = new Classes.Game(WindowWidth,WindowHeight,TileSize,map,PanelWidth);
+            
 
             //event handles
 
@@ -72,11 +71,11 @@ namespace objTD
 
 
 
-
-
+            int count = 0;
             clock.Restart();
             while (true)
             {
+                //Console.WriteLine("{0} {1}",count++,clock.ElapsedTime.AsMilliseconds());
                 okno.DispatchEvents();
                 okno.Clear();
                 game.Update(okno);
