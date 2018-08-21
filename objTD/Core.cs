@@ -18,6 +18,8 @@ namespace objTD
      */
 
 
+    public enum EnemyPoints { Walkable, Unwalkable, UpDown, Right }
+
     class Core
     {
         static void OnClose(object sender, EventArgs e)
@@ -30,7 +32,6 @@ namespace objTD
         {
             //should be encapsulated further
 
-
             const int PanelWidth = 64;
             int sleep_time = 0;
             const int FPS = 50;
@@ -38,7 +39,8 @@ namespace objTD
             const int WindowHeight = 960;
             const int TileSize = 64;
             const int SKIP_TICKS = 1000 / FPS;
-           
+            const int GridTileSizeX = WindowWidth / TileSize;
+            const int GridTileSizeY = WindowHeight / TileSize;
 
 
             Clock globalclock = new Clock();
@@ -50,18 +52,35 @@ namespace objTD
 
 
 
-            //map editor 
-            // encapsulte and move elsewhere
 
-            int[][] map = new int[(WindowWidth / TileSize)][];
-            for (int i = 0; i < WindowWidth / TileSize; i++)
-            {
-                map[i] = new int[(WindowHeight / TileSize)];
-            }
-            for (int i = 0; i < WindowWidth / TileSize; i++)
-            {
-                map[i][4] = 1;
-            }
+            //Level editor
+
+
+            int[][] map = new int[GridTileSizeX][];
+            //LEFT
+            map[0] = new int[GridTileSizeY]  { 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 };
+            map[1] = new int[GridTileSizeY]  { 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 };
+            map[2] = new int[GridTileSizeY]  { 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 };
+            map[3] = new int[GridTileSizeY]  { 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 };
+            map[4] = new int[GridTileSizeY]  { 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 };
+            map[5] = new int[GridTileSizeY]  { 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0 };
+            map[6] = new int[GridTileSizeY]  { 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 };
+            map[7] = new int[GridTileSizeY]  { 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 };
+            map[8] = new int[GridTileSizeY]  { 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 };
+            map[9] = new int[GridTileSizeY]  { 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 };  //TOP
+            map[10] = new int[GridTileSizeY] { 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 };
+            map[11] = new int[GridTileSizeY] { 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 };
+            map[12] = new int[GridTileSizeY] { 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 };
+            map[13] = new int[GridTileSizeY] { 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 };
+            map[14] = new int[GridTileSizeY] { 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 };
+            map[15] = new int[GridTileSizeY] { 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0 };
+            map[16] = new int[GridTileSizeY] { 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 };
+            map[17] = new int[GridTileSizeY] { 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 };
+            map[18] = new int[GridTileSizeY] { 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 };
+            map[19] = new int[GridTileSizeY] { 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 };
+
+
+
 
             Classes.Game game = new Classes.Game(WindowWidth,WindowHeight,TileSize,map,PanelWidth);
             
@@ -77,21 +96,16 @@ namespace objTD
             while (true)
             {
                 //add pause and main menu state
-
                 okno.DispatchEvents();
-
                 okno.Clear();
-
                 game.Update(okno);
-
                 game.Draw(okno);
-
                 okno.Display();
-
                 sleep_time = SKIP_TICKS - clock.Restart().AsMilliseconds();
                 
                 if (sleep_time >= 0)
                 {
+                    //maybe try spinlcok?
                     Thread.Sleep(sleep_time);
 
                 }

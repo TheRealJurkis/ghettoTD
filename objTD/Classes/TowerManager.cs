@@ -50,7 +50,6 @@ namespace objTD.Classes
 
         private bool CheckBuild()
         {
-
             if (CurrentTile != null &&CurrentTile.Buildable)
             {
                 return true;
