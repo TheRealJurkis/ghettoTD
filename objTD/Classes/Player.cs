@@ -24,17 +24,18 @@ namespace objTD.Classes
 
         public Player(int width,int height,int tilesize,int panelwidth)
         {
-
             this.tilesize = tilesize;
-            HooverMouse = new RectangleShape();
-            HooverMouse.Size = new Vector2f(tilesize,tilesize);
             wwidth = width;
             wheight = height;
+            WantsToBuild = false;
+            PanelWidth = panelwidth;
+
+            HooverMouse = new RectangleShape();
+            HooverMouse.Size = new Vector2f(tilesize,tilesize);
+            HooverMouse.FillColor = new Color(0, 0, 200, 125);
+
             SelectedTile = new Tile(0, 0, tilesize);
             SelectedTile.Tvar.FillColor = new Color(230, 0, 0, 125);
-            WantsToBuild = false;
-            HooverMouse.FillColor = new Color(0,0,200,125);
-            PanelWidth = panelwidth;
         }
    
         private void CheckIfTileSwitch(RenderWindow okno)
@@ -61,12 +62,15 @@ namespace objTD.Classes
         {
             //refactor and improve selection
             //add more functions
+            //EVENTS FOR FUCKS SAKE
+
 
             int X = Mouse.GetPosition(okno).X / tilesize;
             int Y = Mouse.GetPosition(okno).Y / tilesize;
 
             if (X == wwidth / tilesize)
             {
+                Console.WriteLine(X);
                 if (Mouse.IsButtonPressed(Mouse.Button.Left))
                 {
                     WantsToBuild = true;
@@ -76,7 +80,7 @@ namespace objTD.Classes
             else if (X > wwidth / tilesize)
             { X = (wwidth / tilesize) -1; }
 
-            if (Y > wheight / tilesize) { Y = wheight / tilesize; }
+            if (Y >= wheight / tilesize) { Y = (wheight / tilesize) -1; }
             if (X < 0) { X = 0; }
             if (Y < 0) { Y = 0; }
      

@@ -18,6 +18,8 @@ namespace objTD
      */
 
 
+    public enum EnemyPoints { Walkable, Unwalkable, UpDown, Right }
+
     class Core
     {
         static void OnClose(object sender, EventArgs e)
@@ -29,7 +31,6 @@ namespace objTD
         static void Main(string[] args)
         {
             //should be encapsulated further
-
 
             const int PanelWidth = 64;
             int sleep_time = 0;
@@ -104,6 +105,7 @@ namespace objTD
                 
                 if (sleep_time >= 0)
                 {
+                    //maybe try spinlcok?
                     Thread.Sleep(sleep_time);
 
                 }

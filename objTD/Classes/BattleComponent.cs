@@ -17,6 +17,7 @@ namespace objTD.Classes
         WaveManager wm;
         int counter;
         Vector2DUtil V2D;
+        const int CollisionFrameDelay = 10;
 
         public BattleComponent()
         {
@@ -50,6 +51,7 @@ namespace objTD.Classes
                     //Console.WriteLine(enemies.ElementAt(j).Manifestation.GetGlobalBounds().ToString());
                     if(hit)
                     {
+                        Console.WriteLine(0);
                         hit = false;
                         break;
                     }
@@ -63,8 +65,8 @@ namespace objTD.Classes
             tm.Update(player);
             wm.Update();
 
-            //check only every couple of frames to save cpu
-            if (counter++ > 10)
+            //check only every couple of frames
+            if (counter++ > CollisionFrameDelay)
             {
                 CollisionCheck();
                 counter = 0;

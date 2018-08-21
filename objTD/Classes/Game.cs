@@ -11,7 +11,7 @@ namespace objTD.Classes
 {
     class Game
     {
-        //Game builds the map  TODO: make an editor,
+        //Game creates tiles for the map
         //updates and draws its components,
         // TODO: Improve naming and hardcoded...
 
@@ -26,7 +26,7 @@ namespace objTD.Classes
         string Grass = "grass.jpg";
 
 
-
+        //Too many parameters
         public Game(int width,int height,int tilesize,int[][] mapa,int panelwidth)
         {
             //mapa by sa asi mala stavat niekde inde
@@ -34,7 +34,8 @@ namespace objTD.Classes
             map.LoadTextures(Grass,Dirt);
             map.BuildMap(mapa);
 
-            StartTile = map.GetTile(0, 4);
+            //redundant
+            StartTile = map.GetTile(0, 8);
 
 
             player = new Player(width,height,tilesize,panelwidth);

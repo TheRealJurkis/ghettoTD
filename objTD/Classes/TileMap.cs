@@ -18,13 +18,11 @@ namespace objTD.Classes
         private int TileMapWidth, TileMapHeight;
         public Tile[][] TileArray;
         private int TileSize;
-        private Clock clk;
 
-
+        //redundacy passing parameters over and over again
         public TileMap(int WWidth, int Wheight, int TileSize)
         {
             //initializes the TileArray
-            clk = new Clock();
             this.TileSize = TileSize;
             TileMapHeight = Wheight / TileSize;
             TileMapWidth = WWidth / TileSize;
@@ -35,7 +33,6 @@ namespace objTD.Classes
             }
             BuildTiles();
         }
-
         private void BuildTiles()
         {
             for (int i = 0; i < TileMapWidth; i++)
@@ -46,8 +43,8 @@ namespace objTD.Classes
                 }
             }
         }
-
-        public bool CheckIfBuildable(int x, int y)
+        //propg
+        public bool TileBuildable(int x, int y)
         {
             return TileArray[x][y].Buildable;
         }
@@ -61,22 +58,32 @@ namespace objTD.Classes
 
         public void BuildMap(int[][] map)
         {
-            //berie mapu intigrov  1== unwalkable
-            //ghetto editor
+            //berie mapu intigrov 
+            // 1== unwalkable
+            // 2== up down point
+            // 3== right point
             for (int i = 0; i < TileMapWidth; i++)
             {
                 for (int j = 0; j < TileMapHeight; j++)
                 {
-                    //zmenit na enum maybe
-                    if (map[i][j] == 1)
+                    switch (map[i][j])
                     {
-                        TileArray[i][j].GiveTexture(DirtTexture);
-                        TileArray[i][j].Buildable = false;
-                    }
-                    else
-                    {
-                        TileArray[i][j].GiveTexture(GrassTexture);
-                        TileArray[i][j].Buildable = true;
+                        case 1:
+                            TileArray[i][j].GiveTexture(DirtTexture);
+                            TileArray[i][j].Buildable = false;
+                            continue;
+                        case 2:
+                            TileArray[i][j].GiveTexture(DirtTexture);
+                            TileArray[i][j].Buildable = false;
+                            continue;
+                        case 3:
+                            TileArray[i][j].GiveTexture(DirtTexture);
+                            TileArray[i][j].Buildable = false;
+                            continue;
+                        case 0:
+                            TileArray[i][j].GiveTexture(GrassTexture);
+                            TileArray[i][j].Buildable = true;
+                            continue;
                     }
                 }
             }
