@@ -15,15 +15,12 @@ namespace objTD.Classes
     {
         TowerManager tm;
         WaveManager wm;
-        int counter;
-        Vector2DUtil V2D;
         const int CollisionFrameDelay = 10;
 
         public BattleComponent()
         {
             tm = new TowerManager();
             wm = new WaveManager();
-            V2D = new Vector2DUtil();
         }
 
         public void LoadMap(TileMap map)
@@ -43,15 +40,25 @@ namespace objTD.Classes
                 //save time to check only towers that can shoot
                // if(towers.ElementAt(i).Reloading)
                // { continue; }
-                for (int j = enemies.Count -1 ; j >= 0; j--)
+
+                //for (int j = enemies.Count -1 ; j >= 0; j--)
+                //{
+                for (int j = 0; j < enemies.Count; j++)
                 {
-                    bool hit = towers.ElementAt(i).AttackRadius.GetGlobalBounds().Intersects(enemies.ElementAt(j).Manifestation.GetGlobalBounds());
-                    
-                    //Console.WriteLine(hit);
-                    //Console.WriteLine(enemies.ElementAt(j).Manifestation.GetGlobalBounds().ToString());
+
+                    Tower veza = towers.ElementAt(i);
+                    Enemy nepriatel = enemies.ElementAt(j);
+
+
+                    bool hit = veza.AttackRadius.GetGlobalBounds().Intersects(nepriatel.Manifestation.GetGlobalBounds());
+
                     if(hit)
                     {
-                        Console.WriteLine(0);
+                        veza.Rotate(nepriatel);
+                        if(veza.ReadyToShoot)
+                        {
+                            veza.ShootAt(nepriatel);
+                        }
                         hit = false;
                         break;
                     }
@@ -64,13 +71,8 @@ namespace objTD.Classes
             tm.UpdateCurrentTile(player.SelectedTile);
             tm.Update(player);
             wm.Update();
+            CollisionCheck();
 
-            //check only every couple of frames
-            if (counter++ > CollisionFrameDelay)
-            {
-                CollisionCheck();
-                counter = 0;
-            }
         }
         public void Draw(RenderWindow okno)
         {

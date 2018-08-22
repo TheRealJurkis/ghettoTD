@@ -10,19 +10,30 @@ namespace objTD.Classes
 {
     //Enemies are drawn and updated
     //TODO: redo constructor and add variability
+    enum MyEnum
+    {
+        regular,thick,fast,flying
+    }
+
 
     class Enemy
     {
+
+        private static int EnemyCounter;
+        public readonly int EnemyId;
+
         private int Health;
         private Vector2f Velocity;
         public CircleShape Manifestation { get; set; }
+        public bool Dead { get; private set; }
 
         public Enemy(int health)
         {
+           EnemyId = EnemyCounter++;
            Velocity = new Vector2f(1.5f,0);
            Health = health;
            Manifestation = new CircleShape();
-           GiveStartTile(new Tile(0, 4, 64));
+           GiveStartTile(new Tile(0, 7, 64));
            Manifestation.FillColor = Color.Red;
            Manifestation.Radius = 16;
         }
@@ -32,21 +43,37 @@ namespace objTD.Classes
             Manifestation.Position = new Vector2f(starttile.Tvar.Position.X, starttile.Tvar.Position.Y);
         }
 
+        public void Hit(Projectiles p)
+        {
+            Health -= p.DMG;
+            if(Health<=0)
+            {
+                Console.WriteLine("DEDED");
+                Dead = true;
+                //Somehow you need money from here..
+            }
+        }
+        public virtual void Move()
+        {
+
+            Manifestation.Position += Velocity;
+
+        }
+
         public void Update()
         {
-            Manifestation.Position += Velocity;
-            if(false)
+            int x = (int)Manifestation.Position.X/64;
+            int y = (int)Manifestation.Position.Y / 64;
+            if (x == 2)
             {
-                //die
+                Velocity = new Vector2f(1, 2);
             }
+            Move();
         }
 
         public void Draw(RenderWindow okno)
         {
-            if(true) //alive
-            {
-                okno.Draw(Manifestation);
-            }
+            okno.Draw(Manifestation);
         }
     }
 }

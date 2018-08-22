@@ -19,8 +19,10 @@ namespace objTD.Classes
         private RectangleShape HooverMouse;
         private int tilesize, wwidth, wheight, PanelWidth;
         public bool WantsToBuild { get; set; }
+        public TowerTypes TowerQueued { get; set; }
         public Tile SelectedTile { get; private set; }
 
+        //ToDO tower queued different tower built
 
         public Player(int width,int height,int tilesize,int panelwidth)
         {
@@ -63,14 +65,13 @@ namespace objTD.Classes
             //refactor and improve selection
             //add more functions
             //EVENTS FOR FUCKS SAKE
-
+            WantsToBuild = false;
 
             int X = Mouse.GetPosition(okno).X / tilesize;
             int Y = Mouse.GetPosition(okno).Y / tilesize;
 
             if (X == wwidth / tilesize)
             {
-                Console.WriteLine(X);
                 if (Mouse.IsButtonPressed(Mouse.Button.Left))
                 {
                     WantsToBuild = true;

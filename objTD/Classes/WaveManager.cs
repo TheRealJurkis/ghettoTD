@@ -30,13 +30,13 @@ namespace objTD.Classes
             //hardoced tielsize
             WaveManagerClock = new Clock();
             WaveList = new List<Wave>();
-            SpawnTile = new Tile(0, 5, 64);
+            SpawnTile = new Tile(0, 8, 64);
             FillGame();
         }
 
         private void FillGame()
         {
-            for (int level = 0; level < AMOUNTOFLEVELS; level++)
+            for (int level = 0; level <= AMOUNTOFLEVELS; level++)
             {
                 Wave wave = new Wave(SpawnTile);
                 wave.FillWave(10); // manages what type of enemies come in
@@ -55,7 +55,7 @@ namespace objTD.Classes
         private bool WaveValve(Clock wmc)
         {
             //and everyone from previous dead...
-            if (wmc.ElapsedTime.AsSeconds() >= 5 && !false )
+            if (wmc.ElapsedTime.AsSeconds() >= 5 && true ) //Currentwave.alldead
             {
                 wmc.Restart();
                 ReleaseWave();

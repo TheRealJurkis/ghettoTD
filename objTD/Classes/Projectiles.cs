@@ -7,46 +7,73 @@ using System.Threading.Tasks;
 using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
-
+using BasicVector;
 
 namespace objTD.Classes
 {
 
     //Projectiles, will have a launch and type fly methods..
 
+
+
+
     class Projectiles
     {
- 
-        public RectangleShape RigidBody;
+
+
+        public CircleShape RigidBody;
         Vector2f Velocity;
-        Vector2DUtil vmule;
-        Vector2f Target;
+        Enemy Target;
+        int speed = 10;
+        public bool Dead { get; set; }
+        public int DMG { get; set; }
+        public bool Hit { get; private set; }
 
-        public Projectiles(Vector2f pozicia, Vector2f velocity)
+        public Projectiles(Tower veza)
         {
-            vmule = new Vector2DUtil();
-            RigidBody = new RectangleShape();
-            RigidBody.FillColor = Color.Cyan;
-            RigidBody.Size = new Vector2f(12, 64);
-            RigidBody.Position = pozicia;
+            RigidBody = new CircleShape();
+            RigidBody.FillColor = Color.Black;
+            RigidBody.Radius = 6;
+            RigidBody.Position = veza.AttackRadius.Position;
             Velocity = new Vector2f(0, 0);
+            DMG = veza.Damage;
+            Dead = false;
         }
 
-        public void GiveTarget(Vector2f v)
+        public virtual void Update()
         {
-            Target = v;
+            if (Target == null) { return; }
+            if(RigidBody.GetGlobalBounds().Intersects(Target.Manifestation.GetGlobalBounds()))
+            {
+                Target.Hit(this);
+                Die();
+            }
+
+            Vector2f smer = Target.Manifestation.Position - this.RigidBody.Position;
+            Vector v = VectorUtil.Normalize(new Vector(smer.X, smer.Y));
+
+            RigidBody.Position += new Vector2f((float)v.X,(float)v.Y) * speed;
         }
 
-        public void Update()
+        public void GiveTarget(Enemy e)
         {
-            Vector2f smer = Target - this.RigidBody.Position;
-            Vector2f test = vmule.NormalizeVector(smer);
-            RigidBody.Position += test;
+            Target = e;
+        }
+
+        private void Die()
+        {
+            Dead = true;
         }
 
         public void Draw(RenderWindow okno)
         {
             okno.Draw(RigidBody);
         }
+
+
+
+
+
+
     }
 }
