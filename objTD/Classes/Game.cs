@@ -15,7 +15,6 @@ namespace objTD.Classes
         //updates and draws its components,
         // TODO: Improve naming and hardcoded...
 
-        Tile StartTile;
         TileMap map;
         Player player;
         SidePanel sp;
@@ -25,7 +24,6 @@ namespace objTD.Classes
         string Dirt = "dirt.jpg";
         string Grass = "grass.jpg";
 
-
         //Too many parameters
         public Game(int width,int height,int tilesize,int[][] mapa,int panelwidth)
         {
@@ -33,10 +31,6 @@ namespace objTD.Classes
             map = new TileMap(width, height, tilesize);
             map.LoadTextures(Grass,Dirt);
             map.BuildMap(mapa);
-
-            //redundant
-            StartTile = map.GetTile(0, 8);
-
 
             player = new Player(width,height,tilesize,panelwidth);
             battlecomponent = new BattleComponent();
@@ -50,7 +44,6 @@ namespace objTD.Classes
             player.Update(okno);
             battlecomponent.Update(player);
         }
-
 
         public void Draw(RenderWindow okno)
         {

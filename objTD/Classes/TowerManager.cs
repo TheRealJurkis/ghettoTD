@@ -34,7 +34,8 @@ namespace objTD.Classes
 
         public void BuildTower(int x,int y)
         {
-            TowerList.Add(new Tower(CurrentTile.GetGridPositionX(), CurrentTile.GetGridPositionY(), 400));
+            TowerList.Add(new Tower(x,y,TowerTypes.Laser)); //towertype
+
             map.TileArray[CurrentTile.GetGridPositionX()][CurrentTile.GetGridPositionY()].Buildable = false;
         }
 
@@ -61,7 +62,6 @@ namespace objTD.Classes
         {
             if (CurrentTile != null && CheckBuild() && player.WantsToBuild)
             {
-                //postav danu vezu
                 BuildTower(CurrentTile.GetGridPositionX(),CurrentTile.GetGridPositionY());
             }
 

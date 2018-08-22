@@ -90,26 +90,32 @@ namespace objTD
             //event handles
 
             okno.Closed += new EventHandler(OnClose);
-
+            bool GameNotPaused = true;
 
             clock.Restart();
             while (true)
             {
-                //add pause and main menu state
-                okno.DispatchEvents();
-                okno.Clear();
-                game.Update(okno);
-                game.Draw(okno);
-                okno.Display();
-                sleep_time = SKIP_TICKS - clock.Restart().AsMilliseconds();
-                
-                if (sleep_time >= 0)
+                while(GameNotPaused)
                 {
-                    //maybe try spinlcok?
-                    Thread.Sleep(sleep_time);
+                    //CheckPause();
+                    //add pause and main menu state
+                    okno.DispatchEvents();
+                    okno.Clear();
+                    game.Update(okno);
+                    game.Draw(okno);
+                    okno.Display();
+                    sleep_time = SKIP_TICKS - clock.Restart().AsMilliseconds();
+
+                    if (sleep_time >= 0)
+                    {
+                        //test and
+                        //maybe try spinlock?
+                        Thread.Sleep(sleep_time);
+
+                    }
+                    clock.Restart();
 
                 }
-                clock.Restart();
             }
         }
     }

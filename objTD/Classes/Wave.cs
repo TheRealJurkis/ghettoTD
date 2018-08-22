@@ -23,14 +23,15 @@ namespace objTD.Classes
         List<Enemy> DrawableEnemies;
 
         Tile SpawnTile;
-        Clock WaveClock;
+        public Clock WaveClock;
         int WaveCounter;
         int EnemyIntervalTime = 50;
         bool WaveReleaseFinished;
-
+        public bool AllDead { get; private set; }
 
         public Wave(Tile spawntile)
         {
+            AllDead = false;
             WaveClock = new Clock();
             DormantEnemyList = new List<Enemy>();
             SpawnTile = spawntile;
@@ -90,7 +91,14 @@ namespace objTD.Classes
             CheckForRelease();
             for (int i = DrawableEnemies.Count - 1; i >= 0; i--)
             {
+                if(DrawableEnemies.ElementAt(i).Dead)
+                {
+                    //Finalize or dispose??
+                    DrawableEnemies.RemoveAt(i);
+                    continue;
+                }
                 DrawableEnemies.ElementAt(i).Update();
+                
             }
         }
 
