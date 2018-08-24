@@ -26,14 +26,14 @@ namespace objTD.Classes
         public Location location { get; set; }
         public CircleShape Manifestation { get; set; }
         public bool Dead { get; private set; }
-        private float speed = 2.5f;
+        private float speed = 3.5f;
 
 
 
         public Enemy(int health)
         {
            EnemyId = EnemyCounter++;
-           Health = health;
+           Health = health *15;
            Manifestation = new CircleShape();
            Manifestation.FillColor = Color.Red;
            Manifestation.Radius = 16;
