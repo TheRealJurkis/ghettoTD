@@ -17,9 +17,10 @@ namespace objTD.Classes
     class TowerManager
     {
         private List<Tower> TowerList;
-        TileMap map;
-        Tile CurrentTile;
+        public PathFinding.PathGrid Grid;
+        PathFinding.PathNode CurrentNode;
         private Clock clk;
+        public bool TowerWasBuilt { get; set; }
 
         public TowerManager()
         {
@@ -32,26 +33,33 @@ namespace objTD.Classes
             return TowerList;
         }
 
-        public void BuildTower(int x,int y)
+        public void BuildTower(Location loc ,TowerTypes type)
         {
-            TowerList.Add(new Tower(x,y,TowerTypes.Laser)); //towertype
+            //zmenit tower
+            PathFinding.PathNode node = Grid.GetPathNode(loc);
 
-            map.TileArray[CurrentTile.GetGridPositionX()][CurrentTile.GetGridPositionY()].Buildable = false;
+            TowerList.Add(new Tower(node,type)); //towertype
+            node.Buildable = false;
+            node.Walkable = false;
+            node.Cost = 255;
+            TowerWasBuilt = true;
+            Console.WriteLine("x={0}   y={1}",loc.x,loc.y);
+
         }
 
-        public void LoadMap(TileMap m)
+        public void UpdateGrid(PathFinding.PathGrid m)
         {
-            map = m;
+            Grid = m;
         }
 
-        public void UpdateCurrentTile(Tile tile)
+        public void UpdateCurrentNode(Location loc)
         {
-            CurrentTile = map.GetTile(tile.GetGridPositionX(),tile.GetGridPositionY());
+            CurrentNode = Grid.GetPathNode(loc);
         }
 
         private bool CheckBuild()
         {
-            if (CurrentTile != null &&CurrentTile.Buildable)
+            if (CurrentNode != null && CurrentNode.Buildable)
             {
                 return true;
             }
@@ -60,15 +68,21 @@ namespace objTD.Classes
 
         public void Update(Player player)
         {
-            if (CurrentTile != null && CheckBuild() && player.WantsToBuild)
+            if ( CheckBuild() && player.WantsToBuild)
             {
-                BuildTower(CurrentTile.GetGridPositionX(),CurrentTile.GetGridPositionY());
+                BuildTower((CurrentNode.NodeLocation),player.TowerQueued);
+                TowerWasBuilt = true;
+            }
+            else
+            {
+                TowerWasBuilt = false;
             }
 
             for (int i = TowerList.Count - 1; i >= 0; i--)
             {
                 TowerList.ElementAt(i).Update();
             }
+            //Console.WriteLine(Grid.GetPathNode(CurrentNode.NodeLocation).NodeFlow.ToString());
         }
         public void Draw(RenderWindow okno)
         {

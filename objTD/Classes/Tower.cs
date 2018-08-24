@@ -25,6 +25,7 @@ namespace objTD.Classes
 
     class Tower
     {
+        const int TileSize = 32;
         public int Damage { get; private set; }
         int FireRateMS = 500;
         int Cost;
@@ -39,7 +40,7 @@ namespace objTD.Classes
 
         Clock TowerClock;
 
-        public Tower(int Xtile,int Ytile,TowerTypes e)
+        public Tower(PathFinding.PathNode node,TowerTypes e)
         {
             TowerClock = new Clock();
             kanon = new Sprite();
@@ -55,8 +56,9 @@ namespace objTD.Classes
                     break;
                 case TowerTypes.Laser:
                     kanon.Texture = new Texture("Laser3.png");
+                    kanon.Position = new Vector2f(node.NodeLocation.x*TileSize, node.NodeLocation.y*TileSize) + new Vector2f(TileSize/2, TileSize/2);
+                    kanon.Origin = new Vector2f(TileSize / 2, TileSize / 2);
                     AttackRadius.Radius = 200;
-                    AttackRadius.Position -= new Vector2f(Xtile*64,Ytile*64);
                     Damage = 10;
                     break;
                 case TowerTypes.Sonic:
@@ -67,7 +69,7 @@ namespace objTD.Classes
             //tower
 
 
-            AttackRadius.Position = new Vector2f(Xtile * 64, Ytile * 64)+ new Vector2f(32, 32);
+            AttackRadius.Position = kanon.Position;
             AttackRadius.Origin = new Vector2f(200,200);
             AttackRadius.FillColor = new Color(45, 0, 0, 45);
             AttackRadius.OutlineColor = Color.Red;
@@ -77,7 +79,7 @@ namespace objTD.Classes
 
 
             kanon.Position = AttackRadius.Position;
-            kanon.Origin = new Vector2f(32, 32);
+            kanon.Origin = new Vector2f(TileSize/2, TileSize/2);
 
         }
 

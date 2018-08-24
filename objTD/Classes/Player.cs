@@ -16,42 +16,52 @@ namespace objTD.Classes
 
     class Player
     {
-        private RectangleShape HooverMouse;
-        private int tilesize, wwidth, wheight, PanelWidth;
+        const int TileSize = 32;
+        private Location HooverMouse;
+        private int  wwidth, wheight, PanelWidth;
         public bool WantsToBuild { get; set; }
         public TowerTypes TowerQueued { get; set; }
-        public Tile SelectedTile { get; private set; }
+        public Location SelectedNode { get; set; }
+        public RectangleShape Hoov;
+        public RectangleShape Select;
 
         //ToDO tower queued different tower built
 
-        public Player(int width,int height,int tilesize,int panelwidth)
+        public Player(int width,int height,int panelwidth)
         {
-            this.tilesize = tilesize;
             wwidth = width;
             wheight = height;
             WantsToBuild = false;
             PanelWidth = panelwidth;
+            Hoov = new RectangleShape();
+            Select = new RectangleShape();
+            Hoov.Size = new Vector2f(32,32);
+            Select.Size = Hoov.Size;
+            Hoov.FillColor = new Color(130, 0, 0, 80);
+            Select.FillColor = new Color(0, 0,130, 80);
 
-            HooverMouse = new RectangleShape();
-            HooverMouse.Size = new Vector2f(tilesize,tilesize);
-            HooverMouse.FillColor = new Color(0, 0, 200, 125);
-
-            SelectedTile = new Tile(0, 0, tilesize);
-            SelectedTile.Tvar.FillColor = new Color(230, 0, 0, 125);
         }
    
+        public void GiveSelectedNode(Location loc)
+        {
+            HooverMouse = loc;
+            SelectedNode = loc;
+        }
         private void CheckIfTileSwitch(RenderWindow okno)
         {
             if (Mouse.IsButtonPressed(Mouse.Button.Right))
             {
-                SelectedTile.Tvar.Position = HooverMouse.Position;
+                SelectedNode = HooverMouse;
             }            
         }
 
         public void Draw(RenderWindow okno)
         {
-            okno.Draw(HooverMouse);
-            okno.Draw(SelectedTile.Tvar);
+            Hoov.Position = new Vector2f(HooverMouse.x * TileSize, HooverMouse.y * TileSize);
+            Select.Position = new Vector2f(SelectedNode.x * TileSize, SelectedNode.y * TileSize);
+            okno.Draw(Hoov);
+            okno.Draw(Select);
+
         }
 
         public void Update(RenderWindow okno)
@@ -67,26 +77,27 @@ namespace objTD.Classes
             //EVENTS FOR FUCKS SAKE
             WantsToBuild = false;
 
-            int X = Mouse.GetPosition(okno).X / tilesize;
-            int Y = Mouse.GetPosition(okno).Y / tilesize;
+            int X = Mouse.GetPosition(okno).X / TileSize;
+            int Y = Mouse.GetPosition(okno).Y / TileSize;
 
-            if (X == wwidth / tilesize)
+            if (X == wwidth / TileSize)
             {
                 if (Mouse.IsButtonPressed(Mouse.Button.Left))
                 {
+                    TowerQueued = TowerTypes.Laser;
                     WantsToBuild = true;
                     return;
                 }
             }
-            else if (X > wwidth / tilesize)
-            { X = (wwidth / tilesize) -1; }
+            else if (X > wwidth / TileSize)
+            { X = (wwidth / TileSize) -1; }
 
-            if (Y >= wheight / tilesize) { Y = (wheight / tilesize) -1; }
+            if (Y >= wheight / TileSize) { Y = (wheight / TileSize) -1; }
             if (X < 0) { X = 0; }
             if (Y < 0) { Y = 0; }
-     
 
-            HooverMouse.Position = new Vector2f(X * tilesize, Y * tilesize);
+            HooverMouse = new Location(X, Y);
+
         }
     }
 }

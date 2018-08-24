@@ -18,22 +18,23 @@ namespace objTD.Classes
 
     class Enemy
     {
-
+        const int TileSize = 32;
         private static int EnemyCounter;
         public readonly int EnemyId;
 
         private int Health;
-        private Vector2f Velocity;
+        public Location location { get; set; }
         public CircleShape Manifestation { get; set; }
         public bool Dead { get; private set; }
+        private float speed = 2.5f;
+
+
 
         public Enemy(int health)
         {
            EnemyId = EnemyCounter++;
-           Velocity = new Vector2f(1.5f,0);
            Health = health;
            Manifestation = new CircleShape();
-           GiveStartTile(new Tile(0, 7, 64));
            Manifestation.FillColor = Color.Red;
            Manifestation.Radius = 16;
         }
@@ -48,27 +49,23 @@ namespace objTD.Classes
             Health -= p.DMG;
             if(Health<=0)
             {
-                Console.WriteLine("DEDED");
                 Dead = true;
                 //Somehow you need money from here..
             }
         }
-        public virtual void Move()
+        public virtual void Move(Vector2f v)
         {
 
-            Manifestation.Position += Velocity;
+            Manifestation.Position += v * speed;
 
         }
 
         public void Update()
         {
-            int x = (int)Manifestation.Position.X/64;
-            int y = (int)Manifestation.Position.Y / 64;
-            if (x == 2)
-            {
-                Velocity = new Vector2f(1, 2);
-            }
-            Move();
+            int x = (int)Manifestation.Position.X / 32;
+            int y = (int)Manifestation.Position.Y / 32;
+
+            location = new Location(x, y);
         }
 
         public void Draw(RenderWindow okno)

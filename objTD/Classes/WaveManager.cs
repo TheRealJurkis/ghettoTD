@@ -17,21 +17,26 @@ namespace objTD.Classes
 
     class WaveManager
     {
+        const int TileSize = 32;
         List<Wave> WaveList;
         public Wave CurrentWave { get; private set; }
         
         Clock WaveManagerClock;
         int AMOUNTOFLEVELS = 100;
         Tile SpawnTile;
-        int CurrentLevel =0;
+        public PathFinding.PathGrid Grid;
 
         public WaveManager()
         {
             //hardoced tielsize
             WaveManagerClock = new Clock();
             WaveList = new List<Wave>();
-            SpawnTile = new Tile(0, 8, 64);
+            SpawnTile = new Tile(0, 8, TileSize);
             FillGame();
+        }
+        public void UpdateGrid(PathFinding.PathGrid m)
+        {
+            Grid = m;
         }
 
         private void FillGame()
@@ -77,7 +82,7 @@ namespace objTD.Classes
             {
                 return;
             }
-                CurrentWave.Update();
+                CurrentWave.Update(Grid);
         }
 
         public void Draw(RenderWindow okno)

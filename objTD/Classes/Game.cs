@@ -15,40 +15,55 @@ namespace objTD.Classes
         //updates and draws its components,
         // TODO: Improve naming and hardcoded...
 
-        TileMap map;
+        PathFinding.PathGrid Grid;
         Player player;
         SidePanel sp;
         BattleComponent battlecomponent;
-
-        //load from somekind of an initfile maybe?
-        string Dirt = "dirt.jpg";
-        string Grass = "grass.jpg";
+        Pathfinder finder;
 
         //Too many parameters
-        public Game(int width,int height,int tilesize,int[][] mapa,int panelwidth)
+        public Game(int width,int height,int tilesize,PathFinding.PathGrid grid,int panelwidth)
         {
-            //mapa by sa asi mala stavat niekde inde
-            map = new TileMap(width, height, tilesize);
-            map.LoadTextures(Grass,Dirt);
-            map.BuildMap(mapa);
+            Grid = grid;
 
-            player = new Player(width,height,tilesize,panelwidth);
+            player = new Player(width,height,panelwidth);
+            player.GiveSelectedNode((new Location(0, 0)));
             battlecomponent = new BattleComponent();
-            battlecomponent.LoadMap(map);
+            battlecomponent.UpdateGrids(grid);
             sp = new SidePanel(width,panelwidth,height,tilesize);
-            
+
+            finder = new Pathfinder();
+            Grid.UpdateFlowGrid(finder.CalculateFlowGrid(Grid));
+        }
+        private void UpdateGameGrid()
+        {
+            Grid = battlecomponent.tm.Grid;
+            if(battlecomponent.tm.TowerWasBuilt)
+            {
+                Grid.UpdateFlowGrid(finder.CalculateFlowGrid(Grid));
+                battlecomponent.tm.UpdateGrid(Grid);
+                battlecomponent.wm.UpdateGrid(Grid);
+                Console.WriteLine("Updated FlowGrid after Tower Built");
+            }
         }
 
         public void Update(RenderWindow okno)
         {
+            //updates player position 
+            //selected tiles and towers queued
             player.Update(okno);
+
+
             battlecomponent.Update(player);
+            battlecomponent.UpdateGrids(Grid);
+
+            UpdateGameGrid();
         }
 
         public void Draw(RenderWindow okno)
         {
             sp.Draw(okno);
-            map.Draw(okno);
+            Grid.Draw(okno);
             player.Draw(okno);
             battlecomponent.Draw(okno);
         }
