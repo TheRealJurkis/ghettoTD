@@ -57,7 +57,7 @@ namespace objTD.Classes
             while (Open.Count != 0)
             {
                 PathFinding.PathNode current = Open.Dequeue();
-
+                int CurrentCost = IntegrationField[current.NodeLocation.x, current.NodeLocation.y];
                 List<PathFinding.PathNode> neighbors = current.GetNeighbors();
                 
 
@@ -65,15 +65,15 @@ namespace objTD.Classes
 
                 foreach (PathFinding.PathNode item in neighbors)
                 {
-                    if(CostField[item.NodeLocation.x,item.NodeLocation.y]==255 && !closed.Contains(item))
+                    if(CostField[item.NodeLocation.x,item.NodeLocation.y]==255 && !Open.Contains(item))
                     {
                         continue;
                     }
                     
 
                     int ItemIntegrationCost = IntegrationField[item.NodeLocation.x, item.NodeLocation.y];
-                    int CurrentCost = CostField[current.NodeLocation.x, current.NodeLocation.y];
                     int ItemCost = CostField[item.NodeLocation.x, item.NodeLocation.y];
+
                     int NewCost = CurrentCost + ItemCost;
 
 
@@ -96,13 +96,13 @@ namespace objTD.Classes
             {
                 for (int j = 0; j < grid.Xwidth; j++)
                 {
-                    if (CostField[j, i] == byte.MaxValue)
+                    if (IntegrationField[j, i] == int.MaxValue)
                     {
                         x = 0;
                     }
                     else
                     {
-                        x = CostField[j, i];
+                        x = IntegrationField[j, i];
                     }
                     Console.Write("{0}", x);
                 }
@@ -118,11 +118,11 @@ namespace objTD.Classes
 
             Vector2f[,] FlowGrid = new Vector2f[grid.Xwidth, grid.Ywidth];
 
-            for (int i = 0; i < grid.Ywidth; i++)
+            for (int i = 0; i < grid.Xwidth; i++)
             {
-                for (int j = 0; j < grid.Xwidth; j++)
+                for (int j = 0; j < grid.Ywidth; j++)
                 {
-                    Location loc = new Location(j, i);
+                    Location loc = new Location(i, j);
                     Location Temp = new Location(0, 0);
                     int IntegrationMin = int.MaxValue;
 
@@ -137,7 +137,7 @@ namespace objTD.Classes
 
                     Vector2f v = CalculateDirection(loc, Temp);
 
-                    FlowGrid[j, i] = v;
+                    FlowGrid[i, j] = v;
                 }
             }
             return FlowGrid;
@@ -145,6 +145,8 @@ namespace objTD.Classes
 
         private Vector2f CalculateDirection(Location from,Location to)
         {
+
+
             Vector2f u = new Vector2f(from.x, from.y);
             Vector2f v = new Vector2f(to.x, to.y);
 
