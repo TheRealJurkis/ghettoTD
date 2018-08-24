@@ -38,6 +38,21 @@
     <Reference Include="nunit.framework, Version=3.10.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.3.10.1\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="QuickGraph.All, Version=3.6.61119.8, Culture=neutral, PublicKeyToken=f3fb40175eec2af3, processorArchitecture=MSIL">
+      <HintPath>..\packages\QuickGraph.All.3.6.61119.8\lib\net40\QuickGraph.All.dll</HintPath>
+    </Reference>
+    <Reference Include="QuickGraph.Core, Version=3.6.61119.8, Culture=neutral, PublicKeyToken=f3fb40175eec2af3, processorArchitecture=MSIL">
+      <HintPath>..\packages\QuickGraph.All.3.6.61119.8\lib\net40\QuickGraph.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="QuickGraph.Data, Version=3.6.61119.8, Culture=neutral, PublicKeyToken=f3fb40175eec2af3, processorArchitecture=MSIL">
+      <HintPath>..\packages\QuickGraph.All.3.6.61119.8\lib\net40\QuickGraph.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="QuickGraph.Graphviz, Version=3.6.61119.8, Culture=neutral, PublicKeyToken=f3fb40175eec2af3, processorArchitecture=MSIL">
+      <HintPath>..\packages\QuickGraph.All.3.6.61119.8\lib\net40\QuickGraph.Graphviz.dll</HintPath>
+    </Reference>
+    <Reference Include="QuickGraph.Serialization, Version=3.6.61119.8, Culture=neutral, PublicKeyToken=f3fb40175eec2af3, processorArchitecture=MSIL">
+      <HintPath>..\packages\QuickGraph.All.3.6.61119.8\lib\net40\QuickGraph.Serialization.dll</HintPath>
+    </Reference>
     <Reference Include="sfmlnet-audio-2, Version=2.4.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Graphnode.SFML.Net.2.4\lib\sfmlnet-audio-2.dll</HintPath>
     </Reference>
@@ -67,6 +82,11 @@
     <Compile Include="Classes\Enemy.cs" />
     <Compile Include="Classes\Entity.cs" />
     <Compile Include="Classes\Game.cs" />
+    <Compile Include="Classes\PathFinding\Location.cs" />
+    <Compile Include="Classes\PathFinding\PathEdge.cs" />
+    <Compile Include="Classes\PathFinding\Pathfinder.cs" />
+    <Compile Include="Classes\PathFinding\PathGrid.cs" />
+    <Compile Include="Classes\PathFinding\PathNode.cs" />
     <Compile Include="Classes\Player.cs" />
     <Compile Include="Classes\Projectiles.cs" />
     <Compile Include="Classes\SidePanel.cs" />

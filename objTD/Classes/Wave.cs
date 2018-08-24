@@ -85,7 +85,7 @@ namespace objTD.Classes
             }
         }
 
-        public void Update()
+        public void Update(PathFinding.PathGrid grid)
         {
             //checkDead();
             CheckForRelease();
@@ -97,7 +97,11 @@ namespace objTD.Classes
                     DrawableEnemies.RemoveAt(i);
                     continue;
                 }
+
                 DrawableEnemies.ElementAt(i).Update();
+
+                Location loc = DrawableEnemies.ElementAt(i).location;
+                DrawableEnemies.ElementAt(i).Move(grid.GetPathNode(loc).NodeFlow);
                 
             }
         }

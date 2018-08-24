@@ -13,19 +13,13 @@ namespace objTD.Classes
 {
     class BattleComponent
     {
-        TowerManager tm;
-        WaveManager wm;
-        const int CollisionFrameDelay = 10;
+        public TowerManager tm;
+        public WaveManager wm;
 
         public BattleComponent()
         {
             tm = new TowerManager();
             wm = new WaveManager();
-        }
-
-        public void LoadMap(TileMap map)
-        {
-            tm.LoadMap(map);
         }
 
         public void CollisionCheck()
@@ -66,11 +60,26 @@ namespace objTD.Classes
             }
         }
 
+
+        //work is done outside of BC
+
+        public void UpdateGrids(PathFinding.PathGrid m)
+        {
+            tm.UpdateGrid(m);
+            wm.UpdateGrid(m);
+        }
+
         public void Update(Player player)
         {
-            tm.UpdateCurrentTile(player.SelectedTile);
+            //updates CNode
+            tm.UpdateCurrentNode(player.SelectedNode);
+            //builds towers
             tm.Update(player);
+
+
+            //controls waves and enemies
             wm.Update();
+            
             CollisionCheck();
 
         }
