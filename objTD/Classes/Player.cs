@@ -80,14 +80,29 @@ namespace objTD.Classes
             int X = Mouse.GetPosition(okno).X / TileSize;
             int Y = Mouse.GetPosition(okno).Y / TileSize;
 
-            if (X == wwidth / TileSize)
+            if (Keyboard.IsKeyPressed(Keyboard.Key.X))
             {
-                if (Mouse.IsButtonPressed(Mouse.Button.Left))
-                {
-                    TowerQueued = TowerTypes.Laser;
-                    WantsToBuild = true;
-                    return;
-                }
+                TowerQueued = TowerTypes.Laser;
+                WantsToBuild = true;
+                return;
+            }
+            if (Keyboard.IsKeyPressed(Keyboard.Key.X))
+            {
+                TowerQueued = TowerTypes.Laser;
+                WantsToBuild = true;
+                return;
+            }
+            if (Keyboard.IsKeyPressed(Keyboard.Key.X))
+            {
+                TowerQueued = TowerTypes.Laser;
+                WantsToBuild = true;
+                return;
+            }
+            if (Keyboard.IsKeyPressed(Keyboard.Key.X))
+            {
+                TowerQueued = TowerTypes.Laser;
+                WantsToBuild = true;
+                return;
             }
             else if (X > wwidth / TileSize)
             { X = (wwidth / TileSize) -1; }

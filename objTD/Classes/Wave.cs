@@ -59,11 +59,6 @@ namespace objTD.Classes
             else return false;
         }
 
-        public void CheckDeadEnemies()
-        {
-            //iterates through and deletes dead enemies
-        }
-
         private void RealeaseEnemy()
         {
             if(DormantEnemyList.Count == 0)  //nothing to add
@@ -75,20 +70,28 @@ namespace objTD.Classes
             DormantEnemyList.RemoveAt(DormantEnemyList.Count - 1);
         }
 
-        public void CheckForRelease()
+        private void CheckForRelease()
         {
             if ((WaveClock.ElapsedTime.AsMilliseconds() >= EnemyIntervalTime) && !WaveReleaseFinished )
             {
                 WaveClock.Restart();
-
                 RealeaseEnemy();
+            }
+        }
+
+        private void CheckIfAllDead()
+        {
+            if(DrawableEnemies.Count == 0 && WaveReleaseFinished && DormantEnemyList.Count ==0)
+            {
+                AllDead = true;
             }
         }
 
         public void Update(PathFinding.PathGrid grid)
         {
-            //checkDead();
             CheckForRelease();
+            CheckIfAllDead();
+
             for (int i = DrawableEnemies.Count - 1; i >= 0; i--)
             {
                 if(DrawableEnemies.ElementAt(i).Dead)

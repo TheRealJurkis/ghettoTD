@@ -27,10 +27,25 @@ namespace objTD
             RenderWindow okno = (RenderWindow)sender;
             okno.Close();
         }
-
-        static void Main(string[] args)
+        static void CheckPause(ref bool pause)
+        {
+            if(Keyboard.IsKeyPressed(Keyboard.Key.Space))
+            {
+                pause = true;
+            }
+        }
+        static void CheckUnPause(ref bool pause)
+        {
+            if (Keyboard.IsKeyPressed(Keyboard.Key.Space))
+            {
+                pause = false;
+            }
+        }
+            static void Main(string[] args)
         {
             //should be encapsulated further
+            bool pause = false;
+
 
             const int PanelWidth = 64;
             int sleep_time = 0;
@@ -39,8 +54,7 @@ namespace objTD
             const int WindowHeight = 960;
             const int TileSize = 32;
             const int SKIP_TICKS = 1000 / FPS;
-            const int GridTileSizeX = WindowWidth / TileSize;
-            const int GridTileSizeY = WindowHeight / TileSize;
+
 
 
             Clock globalclock = new Clock();
@@ -70,39 +84,32 @@ namespace objTD
             clock.Restart();
             while (true)
             {
-                while(true)
+                while (Keyboard.IsKeyPressed(Keyboard.Key.Space))
                 {
-                    //CheckPause();
-                    //add pause and main menu state
-                    okno.DispatchEvents();
-                    okno.Clear();
-
-                    //Console.WriteLine("{0} start",clock.ElapsedTime.AsMilliseconds());
-                    game.Update(okno);
-                    game.Draw(okno);
-
-
-
-
-
-                    okno.Display();
-
-
-                    //Console.WriteLine("{0} stoped",clock.ElapsedTime.AsMilliseconds());
-
-
-                    sleep_time = SKIP_TICKS - clock.Restart().AsMilliseconds();
-                    //Console.WriteLine(sleep_time);
-                    if (sleep_time >= 0)
-                    {
-                        //test and
-                        //maybe try spinlock?
-                        Thread.Sleep(sleep_time);
-
-                    }
-                    clock.Restart();
 
                 }
+
+                //CheckPause(); with space building with keyboard
+                okno.DispatchEvents();
+                okno.Clear();
+
+                game.Update(okno);
+                game.Draw(okno);
+
+
+                okno.Display();
+
+
+
+                sleep_time = SKIP_TICKS - clock.Restart().AsMilliseconds();
+                if (sleep_time >= 0)
+                {
+                    //test and
+                    //maybe try spinlock?
+                    Thread.Sleep(sleep_time);
+
+                }
+                clock.Restart();
             }
         }
     }
