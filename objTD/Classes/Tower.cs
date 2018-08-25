@@ -27,7 +27,7 @@ namespace objTD.Classes
     {
         const int TileSize = 32;
         public int Damage { get; private set; }
-        int FireRateMS = 500;
+        int FireRateMS = 50;
         int Cost;
         public CircleShape AttackRadius;
 
@@ -59,7 +59,7 @@ namespace objTD.Classes
                     kanon.Position = new Vector2f(node.NodeLocation.x*TileSize, node.NodeLocation.y*TileSize) + new Vector2f(TileSize/2, TileSize/2);
                     kanon.Origin = new Vector2f(TileSize / 2, TileSize / 2);
                     AttackRadius.Radius = 200;
-                    Damage = 10;
+                    Damage = 1000;
                     break;
                 case TowerTypes.Sonic:
 

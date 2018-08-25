@@ -25,12 +25,18 @@ namespace objTD.Classes
         int AMOUNTOFLEVELS = 100;
         public PathFinding.PathGrid Grid;
 
+        public byte WaveLevel { get; set; }
+
+
+
+
         public WaveManager()
         {
             //hardoced tielsize
             WaveManagerClock = new Clock();
             WaveList = new List<Wave>();
-            FillGame();
+            WaveLevel = 1;
+            ReleaseWave();
         }
         public void UpdateGrid(PathFinding.PathGrid m)
         {
@@ -47,10 +53,15 @@ namespace objTD.Classes
             }
         }
 
-        public void ReleaseWave()
+        private void ReleaseWave()
         {
-            //all should be dead or more waves at once
-            if (WaveList.Count == 0) return;
+            //all should be dead;
+
+            Wave wave = new Wave();
+            wave.FillWave(WaveLevel++);
+            Console.WriteLine(WaveLevel);
+            WaveList.Add(wave);
+
             CurrentWave = WaveList.ElementAt(WaveList.Count - 1);
             WaveList.RemoveAt(WaveList.Count - 1);
         }
@@ -58,9 +69,8 @@ namespace objTD.Classes
         private bool WaveValve(Clock wmc)
         {
             //and everyone from previous dead...
-            if (wmc.ElapsedTime.AsSeconds() >= 2 || false ) //Currentwave.alldead
+            if ( CurrentWave.AllDead || CurrentWave==null ) //Currentwave.alldead
             {
-                wmc.Restart();
                 ReleaseWave();
                 return true;
             }         
@@ -69,18 +79,19 @@ namespace objTD.Classes
 
         public void Update()
         {
-            //nejako zmerat cas a potom pustit
-            //CheckForDeaths();
 
-            if (WaveValve(WaveManagerClock))
-            {
-                WaveManagerClock.Restart();
-            }
             if (CurrentWave == null)
             {
                 return;
             }
-                CurrentWave.Update(Grid);
+            //Console.WriteLine(CurrentWave.AllDead);
+            if (CurrentWave.AllDead)
+            {
+                WaveManagerClock.Restart();
+            }
+
+            WaveValve(WaveManagerClock);
+            CurrentWave.Update(Grid);
         }
 
         public void Draw(RenderWindow okno)

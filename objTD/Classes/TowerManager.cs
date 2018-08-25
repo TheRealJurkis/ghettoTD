@@ -81,7 +81,6 @@ namespace objTD.Classes
             {
                 TowerList.ElementAt(i).Update();
             }
-            Console.WriteLine(Grid.GetPathNode(CurrentNode.NodeLocation).NodeFlow.ToString());
         }
         public void Draw(RenderWindow okno)
         {
