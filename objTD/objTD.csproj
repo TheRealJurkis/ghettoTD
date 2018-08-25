@@ -83,7 +83,6 @@
     <Compile Include="Classes\Entity.cs" />
     <Compile Include="Classes\Game.cs" />
     <Compile Include="Classes\PathFinding\Location.cs" />
-    <Compile Include="Classes\PathFinding\PathEdge.cs" />
     <Compile Include="Classes\PathFinding\Pathfinder.cs" />
     <Compile Include="Classes\PathFinding\PathGrid.cs" />
     <Compile Include="Classes\PathFinding\PathNode.cs" />
@@ -94,7 +93,6 @@
     <Compile Include="Classes\TileMap.cs" />
     <Compile Include="Classes\Tower.cs" />
     <Compile Include="Classes\TowerManager.cs" />
-    <Compile Include="Classes\Vector2DUtil.cs" />
     <Compile Include="Classes\Wave.cs" />
     <Compile Include="Classes\WaveManager.cs" />
     <Compile Include="Core.cs" />

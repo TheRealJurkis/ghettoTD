@@ -22,27 +22,27 @@ namespace objTD.Classes
         List<Enemy> DormantEnemyList;
         List<Enemy> DrawableEnemies;
 
-        Tile SpawnTile;
+        //Tile SpawnTile;
         public Clock WaveClock;
-        int WaveCounter;
-        int EnemyIntervalTime = 50;
+        int EnemyIntervalTime = 10;
         bool WaveReleaseFinished;
         public bool AllDead { get; private set; }
-
-        public Wave(Tile spawntile)
+        private Random rnd;
+        public Wave()
         {
+            rnd = new Random();
             AllDead = false;
             WaveClock = new Clock();
             DormantEnemyList = new List<Enemy>();
-            SpawnTile = spawntile;
             DrawableEnemies = new List<Enemy>();
         }
 
-        public void FillWave(int AmountOfEnemies)
+        public void FillWave(int level)
         {
-            for (int i = 0; i < AmountOfEnemies; i++)
+            for (int i = 0; i < level *10 ; i++)
             {
-                DormantEnemyList.Add(new Enemy(10));
+                Vector2f start = new Vector2f(0, rnd.Next(0, 800));
+                DormantEnemyList.Add(new Enemy(level,start));
             }
         }
         public List<Enemy> GetActiveEnemyList()

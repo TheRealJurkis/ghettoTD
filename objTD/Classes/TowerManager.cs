@@ -43,7 +43,6 @@ namespace objTD.Classes
             node.Walkable = false;
             node.Cost = 255;
             TowerWasBuilt = true;
-            Console.WriteLine("x={0}   y={1}",loc.x,loc.y);
 
         }
 
@@ -82,7 +81,7 @@ namespace objTD.Classes
             {
                 TowerList.ElementAt(i).Update();
             }
-            //Console.WriteLine(Grid.GetPathNode(CurrentNode.NodeLocation).NodeFlow.ToString());
+            Console.WriteLine(Grid.GetPathNode(CurrentNode.NodeLocation).NodeFlow.ToString());
         }
         public void Draw(RenderWindow okno)
         {
