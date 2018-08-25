@@ -91,29 +91,6 @@ namespace objTD.Classes
                 }
             }
 
-            int x;
-            for (int i = 0; i < grid.Ywidth; i++)
-            {
-                for (int j = 0; j < grid.Xwidth; j++)
-                {
-                    if (IntegrationField[j, i] == int.MaxValue)
-                    {
-                        x = 0;
-                    }
-                    else
-                    {
-                        x = IntegrationField[j, i];
-                    }
-                    Console.Write("{0}", x);
-                }
-                Console.WriteLine();
-            }
-
-
-
-
-
-
             //Calculates FLowGrid
 
             Vector2f[,] FlowGrid = new Vector2f[grid.Xwidth, grid.Ywidth];

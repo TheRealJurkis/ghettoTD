@@ -43,7 +43,7 @@ namespace objTD.Classes
                 Grid.UpdateFlowGrid(finder.CalculateFlowGrid(Grid));
                 battlecomponent.tm.UpdateGrid(Grid);
                 battlecomponent.wm.UpdateGrid(Grid);
-                Console.WriteLine("Updated FlowGrid after Tower Built");
+                //Console.WriteLine("Updated FlowGrid after Tower Built");
             }
         }
 

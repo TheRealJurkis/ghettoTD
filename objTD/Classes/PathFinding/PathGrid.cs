@@ -77,26 +77,26 @@ namespace objTD.Classes.PathFinding
             if((node.NodeLocation.x == 0) && (node.NodeLocation.y == 0))
             {
                 node.GiveNeighbor(pathgrid[0, 1]);
-                node.GiveNeighbor(pathgrid[1, 1]);
+                //node.GiveNeighbor(pathgrid[1, 1]);
                 node.GiveNeighbor(pathgrid[1, 0]);
             }
             else if ((node.NodeLocation.x == 0) && (node.NodeLocation.y == Ywidth -1))
             {
                 node.GiveNeighbor(pathgrid[0, Ywidth-2]);
                 node.GiveNeighbor(pathgrid[1, Ywidth-1]);
-                node.GiveNeighbor(pathgrid[1, Ywidth-2]);
+                //node.GiveNeighbor(pathgrid[1, Ywidth-2]);
             }
             else if ((node.NodeLocation.x == Xwidth-1) && (node.NodeLocation.y == Ywidth-1))
             {
                 node.GiveNeighbor(pathgrid[Xwidth-1, Ywidth-2]);
-                node.GiveNeighbor(pathgrid[Xwidth-2, Ywidth-2]);
+                //node.GiveNeighbor(pathgrid[Xwidth-2, Ywidth-2]);
                 node.GiveNeighbor(pathgrid[Xwidth-2, Ywidth-1]);
             }
             else if ((node.NodeLocation.x == Xwidth-1) && (node.NodeLocation.y == 0))
             {
                 node.GiveNeighbor(pathgrid[Xwidth - 2, 0]);
                 node.GiveNeighbor(pathgrid[Xwidth - 1, 1]);
-                node.GiveNeighbor(pathgrid[Xwidth - 2, 1]);
+                //node.GiveNeighbor(pathgrid[Xwidth - 2, 1]);
             }
             //Okraje
             //left
@@ -105,8 +105,8 @@ namespace objTD.Classes.PathFinding
                 node.GiveNeighbor(pathgrid[x, y - 1]);
                 node.GiveNeighbor(pathgrid[x, y + 1]);
                 node.GiveNeighbor(pathgrid[x+1, y]);
-                node.GiveNeighbor(pathgrid[x+1, y - 1]);
-                node.GiveNeighbor(pathgrid[x+1, y + 1]);
+                //node.GiveNeighbor(pathgrid[x+1, y - 1]);
+                //node.GiveNeighbor(pathgrid[x+1, y + 1]);
 
             }
             //up
@@ -114,8 +114,8 @@ namespace objTD.Classes.PathFinding
             {
                 node.GiveNeighbor(pathgrid[x - 1, y]);
                 node.GiveNeighbor(pathgrid[x + 1, y]);
-                node.GiveNeighbor(pathgrid[x - 1, y+1]);
-                node.GiveNeighbor(pathgrid[x + 1, y + 1]);
+                //node.GiveNeighbor(pathgrid[x - 1, y+1]);
+                //node.GiveNeighbor(pathgrid[x + 1, y + 1]);
                 node.GiveNeighbor(pathgrid[x, y + 1]);
             }
             //right
@@ -124,8 +124,8 @@ namespace objTD.Classes.PathFinding
                 node.GiveNeighbor(pathgrid[x - 1, y    ]);
                 node.GiveNeighbor(pathgrid[x    , y + 1]);
                 node.GiveNeighbor(pathgrid[x    , y - 1]);
-                node.GiveNeighbor(pathgrid[x - 1, y - 1]);
-                node.GiveNeighbor(pathgrid[x - 1, y + 1]);
+                //node.GiveNeighbor(pathgrid[x - 1, y - 1]);
+                //node.GiveNeighbor(pathgrid[x - 1, y + 1]);
 
             }
             //down
@@ -133,24 +133,24 @@ namespace objTD.Classes.PathFinding
             {
                 node.GiveNeighbor(pathgrid[x - 1, y]);
                 node.GiveNeighbor(pathgrid[x +1, y ]);
-                node.GiveNeighbor(pathgrid[x -1, y - 1]);
-                node.GiveNeighbor(pathgrid[x +1, y - 1]);
+                //node.GiveNeighbor(pathgrid[x -1, y - 1]);
+                //node.GiveNeighbor(pathgrid[x +1, y - 1]);
                 node.GiveNeighbor(pathgrid[x , y-1]);
 
             }
             //centre
             else
             {
-                node.GiveNeighbor(pathgrid[x + 1, y -1]);
+               // node.GiveNeighbor(pathgrid[x + 1, y -1]);
                 node.GiveNeighbor(pathgrid[x, y -1]);
-                node.GiveNeighbor(pathgrid[x - 1, y - 1]);
+               // node.GiveNeighbor(pathgrid[x - 1, y - 1]);
 
                 node.GiveNeighbor(pathgrid[x - 1, y]);
                 node.GiveNeighbor(pathgrid[x+1, y]);
 
                 node.GiveNeighbor(pathgrid[x, y +1]);
-                node.GiveNeighbor(pathgrid[x+1, y + 1]);
-                node.GiveNeighbor(pathgrid[x-1, y+- 1]);
+                //node.GiveNeighbor(pathgrid[x+1, y + 1]);
+                //node.GiveNeighbor(pathgrid[x-1, y+- 1]);
 
             }
             pathgrid[x, y] = node;

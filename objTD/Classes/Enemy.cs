@@ -26,24 +26,20 @@ namespace objTD.Classes
         public Location location { get; set; }
         public CircleShape Manifestation { get; set; }
         public bool Dead { get; private set; }
-        private float speed = 3.5f;
+        private float speed = 1f;
 
 
 
-        public Enemy(int health)
+        public Enemy(int level,Vector2f start)
         {
-           EnemyId = EnemyCounter++;
-           Health = health *15;
-           Manifestation = new CircleShape();
-           Manifestation.FillColor = Color.Red;
-           Manifestation.Radius = 16;
+            EnemyId = EnemyCounter++;
+            Health = level *105;
+            Manifestation = new CircleShape();
+            Manifestation.FillColor = Color.Red;
+            Manifestation.Radius = 8;
+            Manifestation.Position = start;
+                                   
         }
-
-        public void GiveStartTile(Tile starttile)
-        {
-            Manifestation.Position = new Vector2f(starttile.Tvar.Position.X, starttile.Tvar.Position.Y);
-        }
-
         public void Hit(Projectiles p)
         {
             Health -= p.DMG;

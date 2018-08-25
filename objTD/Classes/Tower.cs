@@ -71,7 +71,7 @@ namespace objTD.Classes
 
             AttackRadius.Position = kanon.Position;
             AttackRadius.Origin = new Vector2f(200,200);
-            AttackRadius.FillColor = new Color(45, 0, 0, 45);
+            AttackRadius.FillColor = new Color(0, 0, 0,1);
             AttackRadius.OutlineColor = Color.Red;
             AttackRadius.OutlineThickness = 1f;
 

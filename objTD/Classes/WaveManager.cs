@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
+using SFML.Window;
 using SFML.System;
 using SFML.Graphics;
 
@@ -23,7 +23,6 @@ namespace objTD.Classes
         
         Clock WaveManagerClock;
         int AMOUNTOFLEVELS = 100;
-        Tile SpawnTile;
         public PathFinding.PathGrid Grid;
 
         public WaveManager()
@@ -31,7 +30,6 @@ namespace objTD.Classes
             //hardoced tielsize
             WaveManagerClock = new Clock();
             WaveList = new List<Wave>();
-            SpawnTile = new Tile(0, 8, TileSize);
             FillGame();
         }
         public void UpdateGrid(PathFinding.PathGrid m)
@@ -41,10 +39,10 @@ namespace objTD.Classes
 
         private void FillGame()
         {
-            for (int level = 0; level <= AMOUNTOFLEVELS; level++)
+            for (int level = AMOUNTOFLEVELS ; 1 <= level; level--)
             {
-                Wave wave = new Wave(SpawnTile);
-                wave.FillWave(10); // manages what type of enemies come in
+                Wave wave = new Wave();
+                wave.FillWave(level); // manages what type of enemies come in
                 WaveList.Add(wave);
             }
         }
@@ -60,7 +58,7 @@ namespace objTD.Classes
         private bool WaveValve(Clock wmc)
         {
             //and everyone from previous dead...
-            if (wmc.ElapsedTime.AsSeconds() >= 5 && true ) //Currentwave.alldead
+            if (wmc.ElapsedTime.AsSeconds() >= 2 || false ) //Currentwave.alldead
             {
                 wmc.Restart();
                 ReleaseWave();
