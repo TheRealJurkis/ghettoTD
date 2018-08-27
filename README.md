@@ -76,7 +76,8 @@ It's main benefit is that it saves cpu time in swarm-ish wave system where enemi
 The algorithm recalculates the shortest path to finish every time a tower is built, this changes a property of every TileNode called flow which is just a vector representing which direction should the enemy currently on it take to reach the finish.
 
 
-![alt text](https://github.com/TheRealJurkis/ghettoTD/blob/master/objTD/Assets/Examples/Screen%20Shot%202018-08-27%20at%2018.17.15.png "Flow")
+![alt text](https://github.com/therealjurkis/ghettoTD/blob/master/objTD/Assets/Examples/FlowFieldExample.png
+     "Flow")
    
 
 
