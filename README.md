@@ -1,8 +1,8 @@
 # ghettoTD
+##### quick links
 
-[Game screen](#gamescreen)
-[About the code](#Something about the the code)
-
+[How to playe](#howto)
+[About the code](#about)
 
 
 ### What does ghettoTD do?
@@ -14,9 +14,9 @@ The game should be launched by double clicking on ghettoTDLauncher.exe in the ma
 Then you have 5 seconds until enemies start swarming.
 
 
-
+<a name="howto">
 ### How to "play":
-
+</a>
 It is a simple sandbox-ish Tower Defense type game where you have enemies swarming towards a certain location following the fastest path.
 Your goal is to build Towers in a way that creates enough time for the towers to shoot the enemies down.
 You are awarded money for each kill which you can buy towers with.
