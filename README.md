@@ -30,6 +30,34 @@ Right mouse click : selects a tile where the tower will be built
 ![alt text](https://github.com/TheRealJurkis/ghettoTD/blob/master/objTD/Assets/Examples/example1.PNG "example")
 
 
+#### About the code
+
+The design is experimental and a mix of everything i read during the summer, therefore it has many flaws and inneficiencies which i'm either lazy to fix or not seeing yet.
+
+#### Graphics:
+Are done using [CSFML](https://www.sfml-dev.org/).
+
+###### Something about the the code
+
+
+
+The gameloop is in Core.cs, it is implemented as a fixed-time step loop to prevent the complexity added interpolation by implementing variable time step and freeing the physics from rendering. Which is something i definetely want to look into and try to implement.
+
+##### Main class Game:
+
+
+This class was an attempt to decouple components of a game, like player,towers, enemies and pathing algorithm.
+
+
+##### PathFinder class:
+The algorithm is inspired by : [GameAIPro: Crowd Pathfinding and Steering Using Flow Field Tiles](http://www.gameaipro.com/GameAIPro/GameAIPro_Chapter23_Crowd_Pathfinding_and_Steering_Using_Flow_Field_Tiles.pdf)
+
+
+It's main benefit is that it saves cpu time in swarm-ish wave system where enemies spawn on random locations and therefore have different paths to finish.
+
+
+The algorithm recalculates the shortest path to finish every time a tower is built, this changes a property of a TileNode called flow which is just a vector representing which direction should the enemy on it take to reach the finish.
+
 
    
 
