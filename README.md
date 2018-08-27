@@ -73,5 +73,4 @@ The algorithm recalculates the shortest path to finish every time a tower is bui
 
    
 
-### How to install it
 
