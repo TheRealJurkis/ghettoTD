@@ -47,15 +47,15 @@ namespace objTD.Classes
             {
                 case EnemyType.Fast:
                     speed = 3f;
-                    Manifestation.Texture = new Texture("objTD/Assets/Textures/fast.png");
+                    Manifestation.Texture = new Texture("Assets/Textures/fast.png");
                     break;
                 case EnemyType.Regular:
-                    Manifestation.Texture = new Texture("objTD/Assets/Textures/regular.png");
+                    Manifestation.Texture = new Texture("Assets/Textures/regular.png");
                     break;
                 case EnemyType.Thick:
                     speed = 1f;
                     Health = Health * 20;
-                    Manifestation.Texture = new Texture("objTD/Assets/Textures/tank.png");
+                    Manifestation.Texture = new Texture("Assets/Textures/tank.png");
                     break;
             }
         }
