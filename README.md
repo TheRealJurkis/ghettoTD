@@ -43,9 +43,6 @@ Right mouse click : selects a tile where the tower will be built
 Space : Pause Game
 
 
-Amount of money available are printed to console...
-
-
 #gamescreen
 ![alt text](https://github.com/TheRealJurkis/ghettoTD/blob/master/objTD/Assets/Examples/example1.PNG "example")
 
