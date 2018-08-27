@@ -25,6 +25,8 @@ x                 : builds a tower
 
 Right mouse click : selects a tile where the tower will be built
 
+Amount of money available are printed to console...
+
 
 
 ![alt text](https://github.com/TheRealJurkis/ghettoTD/blob/master/objTD/Assets/Examples/example1.PNG "example")
@@ -37,7 +39,7 @@ The design is experimental and a mix of everything i read during the summer, the
 #### Graphics:
 Are done using [CSFML](https://www.sfml-dev.org/).
 
-###### Something about the the code
+##### Something about the the code
 
 
 
