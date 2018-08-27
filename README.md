@@ -73,7 +73,7 @@ The algorithm is inspired by : [GameAIPro: Crowd Pathfinding and Steering Using 
 It's main benefit is that it saves cpu time in swarm-ish wave system where enemies spawn on random locations and therefore have different paths to finish.
 
 
-The algorithm recalculates the shortest path to finish every time a tower is built, this changes a property of a TileNode called flow which is just a vector representing which direction should the enemy on it take to reach the finish.
+The algorithm recalculates the shortest path to finish every time a tower is built, this changes a property of every TileNode called flow which is just a vector representing which direction should the enemy currently on it take to reach the finish.
 
 
    
