@@ -2,6 +2,7 @@
 ##### quick links
 
 [How to playe](#howto)
+[Controls](#controls)
 [About the code](#about)
 
 
@@ -14,9 +15,8 @@ The game should be launched by double clicking on ghettoTDLauncher.exe in the ma
 Then you have 5 seconds until enemies start swarming.
 
 
-<a name="howto">
+<a name="howto"></a>
 ### How to "play":
-</a>
 It is a simple sandbox-ish Tower Defense type game where you have enemies swarming towards a certain location following the fastest path.
 Your goal is to build Towers in a way that creates enough time for the towers to shoot the enemies down.
 You are awarded money for each kill which you can buy towers with.
@@ -26,7 +26,7 @@ It's DEFINETELY not an unfinished functionality that might be added later but a 
 
 
 
-
+<a name="controls"></a>
 #### Controls
 
 x                 : builds a tower
@@ -44,7 +44,7 @@ Amount of money available are printed to console...
 #gamescreen
 ![alt text](https://github.com/TheRealJurkis/ghettoTD/blob/master/objTD/Assets/Examples/example1.PNG "example")
 
-
+<a name="about"></a>
 #### About the code
 
 The design is experimental and a mix of everything i read during the summer, therefore it has many flaws and inneficiencies which i'm either lazy to fix or not seeing yet.
