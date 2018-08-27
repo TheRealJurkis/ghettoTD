@@ -25,7 +25,8 @@ namespace objTD.Classes
 
         public int Health { get; private set; }
         public Location location { get; set; }
-        public CircleShape Manifestation { get; set; }
+        public RectangleShape Manifestation { get; set; }
+        public EnemyType type;
         public bool Dead { get; private set; }
         private float speed;
 
@@ -34,27 +35,27 @@ namespace objTD.Classes
         public Enemy(int level,Vector2f start,EnemyType e)
         {
             EnemyId = EnemyCounter++;
-            Manifestation = new CircleShape();
+            Manifestation = new RectangleShape();
             Manifestation.Position = start;
             Health = level;
             speed = 2f;
+            type = e;
+            Manifestation.Size = new Vector2f(30, 30);
+            Manifestation.Origin = Manifestation.Size / 2;
 
             switch (e)
             {
                 case EnemyType.Fast:
-                    Manifestation.FillColor = Color.Blue;
-                    Manifestation.Radius = 6;
                     speed = 3f;
+                    Manifestation.Texture = new Texture("objTD/Assets/Textures/fast.png");
                     break;
                 case EnemyType.Regular:
-                    Manifestation.FillColor = Color.Magenta;
-                    Manifestation.Radius = 6;
+                    Manifestation.Texture = new Texture("objTD/Assets/Textures/regular.png");
                     break;
                 case EnemyType.Thick:
-                    Manifestation.FillColor = Color.Red;
-                    Manifestation.Radius = 6;
                     speed = 1f;
                     Health = Health * 20;
+                    Manifestation.Texture = new Texture("objTD/Assets/Textures/tank.png");
                     break;
             }
         }
@@ -72,6 +73,23 @@ namespace objTD.Classes
         public virtual void Move(Vector2f direction)
         {
             Manifestation.Position += direction * speed;
+
+            if(direction.X == 0 && direction.Y==-1)
+            {
+                Manifestation.Rotation = 0;
+            }
+            if (direction.X == 0 && direction.Y == 1)
+            {
+                Manifestation.Rotation = 180;
+            }
+            if (direction.X == 1 && direction.Y == 0)
+            {
+                Manifestation.Rotation = 90;
+            }
+            if (direction.X == -1 && direction.Y == 0)
+            {
+                Manifestation.Rotation = 270;
+            }
         }
 
         public void Update()
