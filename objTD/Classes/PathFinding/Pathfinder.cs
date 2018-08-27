@@ -9,7 +9,10 @@ using SFML.System;
 namespace objTD.Classes
 {
     class Pathfinder
-    {
+    {/*
+
+
+        */
 
 
         public Pathfinder()
@@ -31,12 +34,15 @@ namespace objTD.Classes
             return CostField;
         }
 
+        //returns flowgrid
+
         public Vector2f[,] CalculateFlowGrid(PathFinding.PathGrid grid)
         {
             //Calculates CostGrid
 
             byte[,] CostField = GetCostField(grid);
             int[,] IntegrationField = new int[grid.Xwidth, grid.Ywidth];
+
             //init integrationfield
             for (int i = 0; i < grid.Xwidth; i++)
             {
@@ -45,6 +51,9 @@ namespace objTD.Classes
                     IntegrationField[i, j] = int.MaxValue;
                 }
             }
+
+
+            //BFS
             PathFinding.PathNode exit = grid.Exit;
             CostField[exit.NodeLocation.x, exit.NodeLocation.y] = 0;
 
@@ -60,9 +69,6 @@ namespace objTD.Classes
                 int CurrentCost = IntegrationField[current.NodeLocation.x, current.NodeLocation.y];
                 List<PathFinding.PathNode> neighbors = current.GetNeighbors();
                 
-
-                //BFS
-
                 foreach (PathFinding.PathNode item in neighbors)
                 {
                     if(CostField[item.NodeLocation.x,item.NodeLocation.y]==255 && !Open.Contains(item))
@@ -75,8 +81,6 @@ namespace objTD.Classes
                     int ItemCost = CostField[item.NodeLocation.x, item.NodeLocation.y];
 
                     int NewCost = CurrentCost + ItemCost;
-
-
 
                     if (ItemIntegrationCost > NewCost)
                     {

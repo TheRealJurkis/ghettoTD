@@ -11,9 +11,11 @@ using SFML.Graphics;
 
 namespace objTD.Classes
 {
-    //manages wave and releases in set intervals
-    // should check if all enemies are dead maybe give rewards for completing a level
-
+    /*manages wave and releases in set intervals
+     * 
+     * 
+     * TODO: give rewards for completing level..
+     */
 
     class WaveManager
     {
@@ -27,12 +29,14 @@ namespace objTD.Classes
 
         public byte WaveLevel { get; set; }
 
-
+        public event DeathHandler OnDeath;
+        public event LifeDownHandler OnLifeDown;
+        public delegate void LifeDownHandler(WaveManager wm, EventArgs e);
+        public delegate void DeathHandler(WaveManager wm, EventArgs e);
 
 
         public WaveManager()
         {
-            //hardoced tielsize
             WaveManagerClock = new Clock();
             WaveList = new List<Wave>();
             WaveLevel = 1;
@@ -55,21 +59,31 @@ namespace objTD.Classes
 
         private void ReleaseWave()
         {
-            //all should be dead;
-
             Wave wave = new Wave();
             wave.FillWave(WaveLevel++);
-            Console.WriteLine(WaveLevel);
-            WaveList.Add(wave);
+            Subscribe(wave);
+            CurrentWave = wave;
 
-            CurrentWave = WaveList.ElementAt(WaveList.Count - 1);
-            WaveList.RemoveAt(WaveList.Count - 1);
+        }
+
+        public void Subscribe(Wave w)
+        {
+            w.dead += new Wave.DeadHandler(EnemyDied);
+            w.EnemyEscape += new Wave.EnemyEscapeHandler(Escaped);
+        }
+        public void EnemyDied(Wave w,EventArgs e)
+        {
+            OnDeath(this, EventArgs.Empty);
+        }
+        private void Escaped(Wave w, EventArgs e)
+        {
+            OnLifeDown(this, EventArgs.Empty);
         }
 
         private bool WaveValve(Clock wmc)
         {
             //and everyone from previous dead...
-            if ( CurrentWave.AllDead || CurrentWave==null ) //Currentwave.alldead
+            if ( CurrentWave.AllDead || CurrentWave==null )
             {
                 ReleaseWave();
                 return true;
@@ -84,7 +98,6 @@ namespace objTD.Classes
             {
                 return;
             }
-            //Console.WriteLine(CurrentWave.AllDead);
             if (CurrentWave.AllDead)
             {
                 WaveManagerClock.Restart();

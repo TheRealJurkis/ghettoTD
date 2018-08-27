@@ -11,8 +11,13 @@ using SFML.System;
 using SFML.Graphics;
 namespace objTD.Classes
 {
+    /* This class was created as a middleman between enemies and towers
+     * handles collision, Income and updating the grid
+     */
+
     class BattleComponent
     {
+        private int Lives = 10;
         public TowerManager tm;
         public WaveManager wm;
 
@@ -20,7 +25,35 @@ namespace objTD.Classes
         {
             tm = new TowerManager();
             wm = new WaveManager();
+            Subscribe(wm);
         }
+
+        public event GameOverHandler GameOver;
+        public delegate void GameOverHandler(BattleComponent bc, EventArgs e);
+
+
+        //kill enemies get money
+
+        public void Subscribe(WaveManager wavemanager)
+        {
+            wavemanager.OnDeath += new WaveManager.DeathHandler(OnEnemyDeath);
+            wavemanager.OnLifeDown+= new WaveManager.LifeDownHandler(OnLifeDown);
+        }
+        private void OnEnemyDeath(WaveManager wavemanager, EventArgs e)
+        {
+            tm.EarnMoney(wavemanager.WaveLevel *10);
+        }
+        private void OnLifeDown(WaveManager wavemanager, EventArgs e)
+        {
+            Console.WriteLine("You have {0} lives left.",--Lives);
+            if(Lives<=0)
+            {
+                GameOver(this, EventArgs.Empty);
+            }
+        }
+
+        //simple collision check, iterates through every possible collision with enemies and towers
+        //need to check this for every tower every frame because of the cannon tracking the enemy
 
         public void CollisionCheck()
         {
@@ -31,12 +64,6 @@ namespace objTD.Classes
 
             for (int i = towers.Count -1; i >= 0; i--)
             {
-                //save time to check only towers that can shoot
-               // if(towers.ElementAt(i).Reloading)
-               // { continue; }
-
-                //for (int j = enemies.Count -1 ; j >= 0; j--)
-                //{
                 for (int j = 0; j < enemies.Count; j++)
                 {
 

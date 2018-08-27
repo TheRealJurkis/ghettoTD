@@ -13,12 +13,14 @@ namespace objTD.Classes.PathFinding
     {
         public int Xwidth, Ywidth,TileSize;
         private Texture text;
+        private Texture finish;
         private PathNode[,] pathgrid;
         public PathNode Exit { get; private set; }
 
         public PathGrid(int XWindowWidth, int YWindowWidth, int TileSize)
         {
             text = new Texture("grass.jpg");
+            finish = new Texture("dirt.jpg");
             Xwidth = XWindowWidth/TileSize;
             Ywidth = YWindowWidth/TileSize;
             this.TileSize = TileSize;
@@ -47,6 +49,7 @@ namespace objTD.Classes.PathFinding
             }
             Exit = pathgrid[Xwidth - 1, Ywidth / 2 - 1];
             pathgrid[Xwidth - 1, Ywidth / 2 - 1].Buildable = false;
+            pathgrid[Xwidth - 1, Ywidth / 2 - 1].GiveTexture(finish);
 
         }
         public PathNode GetPathNode(Location loc)
@@ -70,8 +73,6 @@ namespace objTD.Classes.PathFinding
         {
             PathNode node = pathgrid[x, y];
             //make possible edges
-
-
 
             //rohy
             if((node.NodeLocation.x == 0) && (node.NodeLocation.y == 0))
@@ -154,12 +155,6 @@ namespace objTD.Classes.PathFinding
 
             }
             pathgrid[x, y] = node;
-
-
-
-
-
-
         }
 
 

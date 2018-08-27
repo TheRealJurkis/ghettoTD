@@ -14,7 +14,6 @@ namespace objTD.Classes
     {
         RectangleShape[] side;
 
-
         public SidePanel(int start,int width, int height,int sidetile)
         {
             side = new RectangleShape[height / sidetile];
@@ -28,6 +27,7 @@ namespace objTD.Classes
             side[1].FillColor = Color.Red;
             side[1].Position = new Vector2f(start, sidetile);
             side[1].Size = new Vector2f(sidetile, sidetile);
+
         }
 
         public void Update(RenderWindow okno)
@@ -37,8 +37,10 @@ namespace objTD.Classes
 
         public void Draw(RenderWindow okno)
         {
+
             okno.Draw(side[0]);
             okno.Draw(side[1]);
+
         }
     }
 }

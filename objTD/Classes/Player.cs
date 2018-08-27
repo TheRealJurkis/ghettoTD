@@ -9,10 +9,10 @@ using SFML.Graphics;
 
 namespace objTD.Classes
 {
-    //one of the main Components of the game, manifestation of the mouse
-    // and its whereabouts 
-    // TODO: will be responsible for choosing states as well as managing towers from sidepanel
-    
+    /* one of the main Components of the game, manifestation of the mouse
+     * and its whereabouts 
+     * TODO: will be responsible for choosing states as well as managing towers from sidepanel
+     */
 
     class Player
     {
@@ -40,6 +40,7 @@ namespace objTD.Classes
             Hoov.FillColor = new Color(130, 0, 0, 80);
             Select.FillColor = new Color(0, 0,130, 80);
 
+
         }
    
         public void GiveSelectedNode(Location loc)
@@ -61,7 +62,6 @@ namespace objTD.Classes
             Select.Position = new Vector2f(SelectedNode.x * TileSize, SelectedNode.y * TileSize);
             okno.Draw(Hoov);
             okno.Draw(Select);
-
         }
 
         public void Update(RenderWindow okno)
@@ -73,8 +73,7 @@ namespace objTD.Classes
         public void MouseHooverUpdate(RenderWindow okno)
         {
             //refactor and improve selection
-            //add more functions
-            //EVENTS FOR FUCKS SAKE
+
             WantsToBuild = false;
 
             int X = Mouse.GetPosition(okno).X / TileSize;
@@ -86,24 +85,7 @@ namespace objTD.Classes
                 WantsToBuild = true;
                 return;
             }
-            if (Keyboard.IsKeyPressed(Keyboard.Key.X))
-            {
-                TowerQueued = TowerTypes.Laser;
-                WantsToBuild = true;
-                return;
-            }
-            if (Keyboard.IsKeyPressed(Keyboard.Key.X))
-            {
-                TowerQueued = TowerTypes.Laser;
-                WantsToBuild = true;
-                return;
-            }
-            if (Keyboard.IsKeyPressed(Keyboard.Key.X))
-            {
-                TowerQueued = TowerTypes.Laser;
-                WantsToBuild = true;
-                return;
-            }
+
             else if (X > wwidth / TileSize)
             { X = (wwidth / TileSize) -1; }
 

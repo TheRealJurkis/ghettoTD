@@ -11,39 +11,55 @@ using SFML.System;
 
 namespace objTD.Classes
 {
-    //This class is intended to provide tower management
-    //like building,destroying,updates and draws
-
+    /*This class is intended to provide tower management
+     * like building,destroying,updates and draws
+     * Also is responsible for moneymanagement which is dumb...
+     */
     class TowerManager
     {
+        const int StartMoney = 100;
+
+
         private List<Tower> TowerList;
         public PathFinding.PathGrid Grid;
         PathFinding.PathNode CurrentNode;
         private Clock clk;
+        public int Money { get; set; }
         public bool TowerWasBuilt { get; set; }
 
         public TowerManager()
         {
             TowerList = new List<Tower>();
             clk = new Clock();
+            Money = StartMoney;
+            Console.WriteLine("You have {0}$ left...",Money);
         }
 
         public List<Tower> GetTowers()
         {
             return TowerList;
         }
+        public void EarnMoney(int Amount)
+        {
+            Money += Amount;
+        }
 
         public void BuildTower(Location loc ,TowerTypes type)
         {
-            //zmenit tower
             PathFinding.PathNode node = Grid.GetPathNode(loc);
 
-            TowerList.Add(new Tower(node,type)); //towertype
-            node.Buildable = false;
-            node.Walkable = false;
-            node.Cost = 255;
-            TowerWasBuilt = true;
+           //hardcoded tower price, change for tower queued
 
+            if(Money >= 50)
+            {
+                TowerList.Add(new Tower(node, type)); 
+                node.Buildable = false;
+                node.Walkable = false;
+                node.Cost = 255;
+                TowerWasBuilt = true;
+                Money -= 50;
+            }
+            Console.WriteLine("You have {0}$ left...", Money);
         }
 
         public void UpdateGrid(PathFinding.PathGrid m)
@@ -84,12 +100,10 @@ namespace objTD.Classes
         }
         public void Draw(RenderWindow okno)
         {
-            //clk.Restart();
             for (int i = TowerList.Count - 1; i >= 0; i--)
             {
                 TowerList.ElementAt(i).Draw(okno);
             }
-           // Console.WriteLine(clk.ElapsedTime.AsMilliseconds());
         }
     }
 }
