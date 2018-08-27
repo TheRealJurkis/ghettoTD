@@ -3,7 +3,7 @@
 
 
 ### 1.What does ghettoTD do?
-This project was created as a part of a Uni programming course, with the main goal of learning how to put together software of around 500 lines
+This project was created as a part of a Uni programming course, with the main goal of learning how to put together a piece of software
 with reasonable object-oriented design.
 
 ### How to "play":
