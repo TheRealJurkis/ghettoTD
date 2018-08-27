@@ -26,6 +26,9 @@ You are awarded money for each kill which you can buy towers with.
 Inherent part of the game is the inability to sell a tower or block-off (try it, they just pass through) enemies from reaching the finish tile.
 It's DEFINETELY not an unfinished functionality that might be added later but a FEATURE.
 
+Amount of money available and amount of lives are printed to the console...
+
+
 
 
 <a name="controls"></a>
