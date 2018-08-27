@@ -24,7 +24,11 @@ x                 : builds a tower
 
 
 Right mouse click : selects a tile where the tower will be built
+
+
 Space : Pause Game
+
+
 Amount of money available are printed to console...
 
 
