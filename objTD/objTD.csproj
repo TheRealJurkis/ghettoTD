@@ -118,6 +118,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Examples\example1.PNG" />
     <Content Include="Assets\Textures\dirt.jpg" />
     <Content Include="Assets\Textures\fast.png" />
     <Content Include="Assets\Textures\grass.jpg" />
