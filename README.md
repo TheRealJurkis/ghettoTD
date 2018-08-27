@@ -10,6 +10,8 @@ It is a simple sandbox-ish Tower Defense type game where you have enemies swarmi
 Your goal is to build Towers in a way that creates enough time for the towers to shoot the enemies down.
 You are awarded money for each kill which you can buy towers with.
 
+
+![alt text](https://github.com/TheRealJurkis/ghettoTD/blob/master/objTD/Assets/Examples/example1.PNG "example")
 ##TODO:
 
 ### How to install it
