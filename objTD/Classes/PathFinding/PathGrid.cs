@@ -19,8 +19,8 @@ namespace objTD.Classes.PathFinding
 
         public PathGrid(int XWindowWidth, int YWindowWidth, int TileSize)
         {
-            text = new Texture("grass.jpg");
-            finish = new Texture("dirt.jpg");
+            text = new Texture("ObjTD/Assets/Textures/grass.jpg");
+            finish = new Texture("ObjTD/Assets/Textures/dirt.jpg");
             Xwidth = XWindowWidth/TileSize;
             Ywidth = YWindowWidth/TileSize;
             this.TileSize = TileSize;

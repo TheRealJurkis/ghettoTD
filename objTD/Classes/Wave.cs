@@ -29,6 +29,9 @@ namespace objTD.Classes
         bool WaveReleaseFinished;
         public bool AllDead { get; private set; }
         private Random rnd;
+        Texture fast;
+        Texture tank;
+        Texture regular;
 
 
 
@@ -41,6 +44,9 @@ namespace objTD.Classes
             WaveClock = new Clock();
             DormantEnemyList = new List<Enemy>();
             DrawableEnemies = new List<Enemy>();
+
+
+
         }
 
         public void FillWave(int level)
@@ -48,7 +54,8 @@ namespace objTD.Classes
             for (int i = 0; i < level *10 ; i++)
             {
                 Vector2f start = new Vector2f(0, rnd.Next(0, 800));
-                DormantEnemyList.Add(new Enemy(level,start,(EnemyType)rnd.Next(0,3)));
+                Enemy e = new Enemy(level, start, (EnemyType)rnd.Next(0, 3));
+                DormantEnemyList.Add(e);
             }
         }
         public List<Enemy> GetActiveEnemyList()

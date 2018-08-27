@@ -49,7 +49,7 @@ namespace objTD.Classes
                     
                     break;
                 case TowerTypes.Laser:
-                    kanon.Texture = new Texture("tank.png");
+                    kanon.Texture = new Texture("ObjTD/Assets/Textures/Turret.png");
                     kanon.Position = new Vector2f(node.NodeLocation.x*TileSize, node.NodeLocation.y*TileSize) + new Vector2f(TileSize/2, TileSize/2);
                     kanon.Origin = new Vector2f(TileSize / 2, TileSize / 2);
                     AttackRadius.Radius = 200;
