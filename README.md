@@ -6,6 +6,12 @@
 This project was created as a part of a Uni programming course, with the main goal of learning how to put together a piece of software
 with reasonable object-oriented design.
 
+### How to start the game:
+The game should be launched by double clicking on ghettoTDLauncher.exe in the main folder.
+Then you have 5 seconds until enemies start swarming.
+
+
+
 ### How to "play":
 
 It is a simple sandbox-ish Tower Defense type game where you have enemies swarming towards a certain location following the fastest path.
