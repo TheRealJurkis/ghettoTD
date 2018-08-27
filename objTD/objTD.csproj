@@ -7,8 +7,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{2A036EF3-79BD-4CD2-ABCA-E8AB1DC44C1B}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>objTD</RootNamespace>
-    <AssemblyName>objTD</AssemblyName>
+    <RootNamespace>ghettoTD</RootNamespace>
+    <AssemblyName>ghettoTD</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
