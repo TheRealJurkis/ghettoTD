@@ -29,12 +29,6 @@ namespace objTD.Classes
         bool WaveReleaseFinished;
         public bool AllDead { get; private set; }
         private Random rnd;
-        Texture fast;
-        Texture tank;
-        Texture regular;
-
-
-
 
 
         public Wave()
