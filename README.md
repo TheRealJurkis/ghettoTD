@@ -1,5 +1,8 @@
 # ghettoTD
 
+[Game screen](#gamescreen)
+[About the code](#Something about the the code)
+
 
 
 ### What does ghettoTD do?
@@ -38,7 +41,7 @@ Space : Pause Game
 Amount of money available are printed to console...
 
 
-
+#gamescreen
 ![alt text](https://github.com/TheRealJurkis/ghettoTD/blob/master/objTD/Assets/Examples/example1.PNG "example")
 
 
