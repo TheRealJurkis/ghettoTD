@@ -1,8 +1,10 @@
 # ghettoTD
 ##### quick links
 
-[How to playe](#howto)
+[How to play](#howto)
+
 [Controls](#controls)
+
 [About the code](#about)
 
 
