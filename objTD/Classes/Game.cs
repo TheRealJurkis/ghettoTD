@@ -11,15 +11,34 @@ namespace objTD.Classes
 {
     class Game
     {
-        //Game creates tiles for the map
-        //updates and draws its components,
-        // TODO: Improve naming and hardcoded...
+        /*Game creates tiles for the map
+         * has battlecomponent and Pathfinder
+         *updates and draws its components,
+         *
+         * TODO: Improve naming and hardcoded...
+         */
 
         PathFinding.PathGrid Grid;
         Player player;
-        SidePanel sp;
+        //SidePanel sp;
         BattleComponent battlecomponent;
         Pathfinder finder;
+
+        public event PauseHandler PauseGame;
+        public delegate void PauseHandler(Game g, EventArgs e);
+
+        public event PauseHandler TurnOffGame;
+
+        public void Subscribe()
+        {
+            battlecomponent.GameOver +=new BattleComponent.GameOverHandler(OnGameOver);
+        }
+        private void OnGameOver(BattleComponent bc, EventArgs e)
+        {
+            Console.WriteLine("gg");
+            TurnOffGame(this, EventArgs.Empty);
+        }
+
 
         //Too many parameters
         public Game(int width,int height,int tilesize,PathFinding.PathGrid grid,int panelwidth)
@@ -30,7 +49,9 @@ namespace objTD.Classes
             player.GiveSelectedNode((new Location(0, 0)));
             battlecomponent = new BattleComponent();
             battlecomponent.UpdateGrids(grid);
-            sp = new SidePanel(width,panelwidth,height,tilesize);
+            Subscribe();
+
+            //sp = new SidePanel(width,panelwidth,height,tilesize);
 
             finder = new Pathfinder();
             Grid.UpdateFlowGrid(finder.CalculateFlowGrid(Grid));
@@ -43,29 +64,33 @@ namespace objTD.Classes
                 Grid.UpdateFlowGrid(finder.CalculateFlowGrid(Grid));
                 battlecomponent.tm.UpdateGrid(Grid);
                 battlecomponent.wm.UpdateGrid(Grid);
-                //Console.WriteLine("Updated FlowGrid after Tower Built");
             }
         }
 
         public void Update(RenderWindow okno)
         {
             //updates player position 
-            //selected tiles and towers queued
+            //selected tiles and towers 
             player.Update(okno);
-
 
             battlecomponent.Update(player);
             battlecomponent.UpdateGrids(Grid);
 
             UpdateGameGrid();
+
+            if(Keyboard.IsKeyPressed(Keyboard.Key.Space))
+            {
+                PauseGame?.Invoke(this, EventArgs.Empty);
+            }
+
         }
 
         public void Draw(RenderWindow okno)
         {
-            sp.Draw(okno);
             Grid.Draw(okno);
             player.Draw(okno);
             battlecomponent.Draw(okno);
+            //sp.Draw(okno);
         }
     }
 }

@@ -11,23 +11,29 @@ using SFML.Graphics;
 
 namespace objTD.Classes
 {
-    //groups enemies together to create a wave, fills waves, releases waves
-    //TODO: maybe move to wavemanager
-    //Two main lists of enemies, dormant enemies which are to be spawned this wave,
-    // drawable are those that are being drawn
+    /* groups enemies together to create a wave, fills waves, releases waves
+    * Two main lists of enemies, dormant enemies which are to be spawned this wave,
+    * drawable are those that are being drawn */
 
 
     class Wave
     {
-        List<Enemy> DormantEnemyList;
-        List<Enemy> DrawableEnemies;
+        //enemies to be added this wave
+        public List<Enemy> DormantEnemyList;
 
-        //Tile SpawnTile;
+        //alive enemies this wave
+        public List<Enemy> DrawableEnemies;
+
         public Clock WaveClock;
         int EnemyIntervalTime = 10;
         bool WaveReleaseFinished;
         public bool AllDead { get; private set; }
         private Random rnd;
+
+
+
+
+
         public Wave()
         {
             rnd = new Random();
@@ -42,7 +48,7 @@ namespace objTD.Classes
             for (int i = 0; i < level *10 ; i++)
             {
                 Vector2f start = new Vector2f(0, rnd.Next(0, 800));
-                DormantEnemyList.Add(new Enemy(level,start));
+                DormantEnemyList.Add(new Enemy(level,start,(EnemyType)rnd.Next(0,3)));
             }
         }
         public List<Enemy> GetActiveEnemyList()
@@ -70,6 +76,21 @@ namespace objTD.Classes
             DormantEnemyList.RemoveAt(DormantEnemyList.Count - 1);
         }
 
+        //when an enemy dies, fires and delegates to wavemanager
+
+        public event DeadHandler dead;
+
+        public delegate void DeadHandler(Wave w, EventArgs e);
+
+
+        //fires when enemy gets to exit location and delegates to wavemanager
+
+        public event EnemyEscapeHandler EnemyEscape;
+
+        public delegate void EnemyEscapeHandler(Wave w, EventArgs e);
+
+
+
         private void CheckForRelease()
         {
             if ((WaveClock.ElapsedTime.AsMilliseconds() >= EnemyIntervalTime) && !WaveReleaseFinished )
@@ -94,9 +115,18 @@ namespace objTD.Classes
 
             for (int i = DrawableEnemies.Count - 1; i >= 0; i--)
             {
-                if(DrawableEnemies.ElementAt(i).Dead)
+                Enemy e = DrawableEnemies.ElementAt(i);
+                if (e.Dead)
                 {
-                    //Finalize or dispose??
+                    //Finalize , dispose??
+                    dead(this, EventArgs.Empty);
+                    DrawableEnemies.RemoveAt(i);
+
+                    continue;
+                }
+                if(e.location == grid.Exit.NodeLocation)
+                {
+                    EnemyEscape?.Invoke(this, EventArgs.Empty);
                     DrawableEnemies.RemoveAt(i);
                     continue;
                 }

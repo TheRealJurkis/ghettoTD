@@ -9,7 +9,10 @@ using SFML.System;
 using SFML.Window;
 namespace objTD.Classes.PathFinding
 {
-
+    /* PathNode represents one in game square with all of its attributes
+     * TODO: hardcoded TileSize...
+     *  
+     */
 
 
     class PathNode
@@ -46,11 +49,6 @@ namespace objTD.Classes.PathFinding
         {
             Neighbors.Add(node);
         }
-        public void LightUp()
-        {
-            TileNode.FillColor = new Color(50, 0, 0, 50);
-        }
-
         public void GiveTexture(Texture t)
         {
             TileNode.Texture = t;

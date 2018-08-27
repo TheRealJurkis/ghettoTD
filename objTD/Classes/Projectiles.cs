@@ -12,17 +12,15 @@ using BasicVector;
 namespace objTD.Classes
 {
 
-    //Projectiles, will have a launch and type fly methods..
-
+    /*Projectiles shot by a tower have dmg velocity and a target
+    */
 
 
 
     class Projectiles
     {
 
-
         public CircleShape RigidBody;
-        Vector2f Velocity;
         Enemy Target;
         int speed = 10;
         public bool Dead { get; set; }
@@ -33,9 +31,8 @@ namespace objTD.Classes
         {
             RigidBody = new CircleShape();
             RigidBody.FillColor = Color.Black;
-            RigidBody.Radius = 6;
+            RigidBody.Radius = 4;
             RigidBody.Position = veza.AttackRadius.Position;
-            Velocity = new Vector2f(0, 0);
             DMG = veza.Damage;
             Dead = false;
         }

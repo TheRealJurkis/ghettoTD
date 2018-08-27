@@ -12,32 +12,26 @@ using SFML.Window;
 namespace objTD.Classes
 {
 
-    //basic tower class, has tower related attributes,
-    //TODO: tower type
-    //shoots ,draws and updates
+    /* basic tower class, has tower related attributes,
+     * TODO: tower types...
+     * shoots ,draws and updates */
 
     public enum TowerTypes
     {
         Homing,Laser,Sonic
     }
 
-
-
     class Tower
     {
         const int TileSize = 32;
         public int Damage { get; private set; }
-        int FireRateMS = 50;
-        int Cost;
+        int FireRateMS = 500;
+        public int TowerCost { get; private set; }
         public CircleShape AttackRadius;
 
-
         public bool ReadyToShoot { get; private set; }
-
         Sprite kanon;
-
         List<Projectiles> TowerProjectiles;
-
         Clock TowerClock;
 
         public Tower(PathFinding.PathNode node,TowerTypes e)
@@ -55,32 +49,26 @@ namespace objTD.Classes
                     
                     break;
                 case TowerTypes.Laser:
-                    kanon.Texture = new Texture("Laser3.png");
+                    kanon.Texture = new Texture("tank.png");
                     kanon.Position = new Vector2f(node.NodeLocation.x*TileSize, node.NodeLocation.y*TileSize) + new Vector2f(TileSize/2, TileSize/2);
                     kanon.Origin = new Vector2f(TileSize / 2, TileSize / 2);
                     AttackRadius.Radius = 200;
-                    Damage = 1000;
+                    Damage = 1;
+                    TowerCost = 50;
                     break;
                 case TowerTypes.Sonic:
 
                     break;
 
             }
-            //tower
-
+ 
 
             AttackRadius.Position = kanon.Position;
             AttackRadius.Origin = new Vector2f(200,200);
             AttackRadius.FillColor = new Color(0, 0, 0,1);
-            AttackRadius.OutlineColor = Color.Red;
-            AttackRadius.OutlineThickness = 1f;
-
-
-
 
             kanon.Position = AttackRadius.Position;
             kanon.Origin = new Vector2f(TileSize/2, TileSize/2);
-
         }
 
         public void ShootAt(Enemy e)
@@ -99,6 +87,7 @@ namespace objTD.Classes
 
             this.kanon.Rotation = 90 + angle;
         }
+
 
         public void Update()
         {
