@@ -57,7 +57,7 @@ The design is experimental and a mix of everything i read during the summer, the
 #### Graphics:
 Are done using [CSFML](https://www.sfml-dev.org/).
 
-##### Something about the the code
+##### Something about the code
 
 
 
