@@ -19,7 +19,10 @@ It's DEFINETELY not an unfinished functionality that might be added later but a 
 
 
 #### Controls
+
 x                 : builds a tower
+
+
 Right mouse click : selects a tile where the tower will be built
 
 
