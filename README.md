@@ -2,8 +2,8 @@
 
 
 
-### 1.What does ghettoTD do?
-This project was created as a part of a Uni programming course, with the main goal of learning how to put together a piece of software
+### What does ghettoTD do?
+This game was created as a part of a Uni programming course, with the main goal of learning how to put together a piece of software
 with reasonable object-oriented design.
 
 ### How to start the game:
