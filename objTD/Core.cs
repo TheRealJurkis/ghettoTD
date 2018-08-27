@@ -31,7 +31,9 @@ namespace objTD
         {
             //should be encapsulated further
 
-            
+
+
+
             const int PanelWidth = 0;
 
             int sleep_time = 0;
@@ -50,6 +52,12 @@ namespace objTD
             RenderWindow okno = new RenderWindow(new VideoMode(WindowWidth +PanelWidth, WindowHeight), "okno", Styles.Close, settings);
             Classes.PathFinding.PathGrid mapa = new Classes.PathFinding.PathGrid(WindowWidth, WindowHeight, TileSize);
             Classes.Game game = new Classes.Game(WindowWidth, WindowHeight, TileSize, mapa, PanelWidth);
+
+            //delay
+            Console.WriteLine("Game starts in 5 seconds");
+            while (clock.ElapsedTime.AsSeconds() <= 5)
+            {
+            }
 
 
 
@@ -73,6 +81,7 @@ namespace objTD
 
 
             //Main Game loop
+
 
             clock.Restart();
             while (true)
